@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Products - GirlyCart</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- 🌸 Navbar -->
+<nav class="navbar">
+    <div class="container navbar-flex">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<!--Product-->
+<section class="products">
+    <h2>Our Collection</h2>
+    <div class="product-grid">
+      {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>₹{{ product.price }}</p>
+        <a href="{% url 'add_to_cart' product.id %}" class="btn-cart">Add to Cart</a>
+    </div>
+{% endfor %}
+
+    </div>
+</section>
+
+<!--Footer-->
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>
+
+</body>
+</html>
+

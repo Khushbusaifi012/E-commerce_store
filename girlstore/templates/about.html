@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - GirlyCart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- 🌸 Navbar -->
+<nav class="navbar">
+    <div class="container navbar-flex">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!--About Section-->
+<section class="about">
+    <div class="container">
+        <h2>About GirlyCart</h2>
+        <p>
+            Welcome to <strong>GirlyCart</strong> – your one-stop destination for trendy and affordable girls' clothing! 
+            Our goal is to bring fashion that speaks confidence, style, and comfort into your wardrobe.
+        </p>
+        <p>
+            At GirlyCart, we believe that every girl deserves to express herself through her unique fashion sense. 
+            Whether you're looking for casual wear, party outfits, or traditional ethnic styles – we’ve got you covered.
+        </p>
+        <p>
+            Founded in 2025, GirlyCart is run by a passionate team that understands the latest fashion trends 
+            and strives to deliver quality with love. 🌸💫
+        </p>
+    </div>
+</section>
+
+<!--Our Mission-->
+<section class="mission">
+    <div class="container">
+        <h3>Our Mission</h3>
+        <p>
+            To provide fashionable and comfortable clothing for girls across India, while ensuring affordability 
+            and fast delivery right to your doorstep.
+        </p>
+    </div>
+</section>
+
+<!--Meet the Team-->
+<section class="team">
+    <div class="container">
+        <h3>Meet the Founder</h3>
+        <p>
+            <strong>Khushbu Saifi</strong> - A young aspiring developer and entrepreneur who started GirlyCart to combine her love 
+            for technology and fashion. ✨👩‍💻
+        </p>
+    </div>
+</section>
+
+<!--Footer-->
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>

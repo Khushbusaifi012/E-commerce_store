@@ -1,0 +1,277 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff0f5;
+}
+
+.navbar {
+    background-color: #FF9898;
+    padding: 15px 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Navbar container layout */
+.navbar-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo with image and text */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 100px;       /* Bigger size */
+    width: auto;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Nav links layout */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.girly-banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-top: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.girly-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.9; /* Slight transparency */
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.girly-banner img:hover {
+    opacity: 1;
+}
+
+
+.hero {
+    background: linear-gradient(to right, #f8bbd0, #f48fb1);
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Optional transparent overlay effect */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: #670D2F;
+}
+
+.hero-content h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #EF88AD;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-cart {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #A53860;
+    border: 2px solid #A53860;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-cart:hover {
+    background-color: #A53860;
+    color: white;
+}
+
+
+.products {
+    padding: 40px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.product-card {
+    width: 200px;
+    background-color: #CF455C;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: #FF9898;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* login page*/
+body {
+    background-color:  #f8bbd0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    color: #A53860;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #EF88AD;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background: #A53860;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.center-text {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+/* signup page*/
+.signup-container {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.signup-container h2 {
+    text-align: center;
+    color: #A53860;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #EF88AD;
+    border-radius: 5px;
+    background: #fff;     
+    color: #A53860; 
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 10px;
+    background: #A53860;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.center-text {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+

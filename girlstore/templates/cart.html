@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - GirlyCart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- 🌸 Navbar -->
+<nav class="navbar">
+    <div class="container navbar-flex">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!--Cart Section-->
+<section class="cart-section">
+    <div class="container">
+        <h2>Your Shopping Cart</h2>
+        
+        {% if cart_items %}
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price (₹)</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.total }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Your cart is currently empty. Start shopping <a href="{% url 'products' %}">here</a>!</p>
+        {% endif %}
+    </div>
+</section>
+
+<!--Footer -->
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>

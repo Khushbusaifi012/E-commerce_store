@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GirlyCart - Girls Clothing</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+{% load static %}
+<!-- 🌸 Navbar -->
+<nav class="navbar">
+    <div class="container navbar-flex">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- 💫 Hero Banner -->
+<section class="girly-banner">
+    <div class="banner-overlay">
+        <img src="{% static 'images/banner.jpg' %}" alt="Fashion Banner">
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Trendy Fashion for Every Girl</h2>
+        <p>Discover new styles & trends!</p>
+        <a href="#" class="btn">Shop Now</a>
+    </div>
+</section>
+
+<!-- 👗 Featured -->
+<section class="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="{% static 'images/product1.jpg' %}" alt="Product 1">
+            <h3>Cute Pink Top</h3>
+            <p>₹499</p>
+            <a href="" class="btn-cart">Add to Cart</a>
+        </div>
+        <div class="product-card">
+            <img src="{% static 'images/product2.jpg' %}" alt="Product 2">
+            <h3>Summer Dress</h3>
+            <p>₹799</p>
+            <a href="" class="btn-cart">Add to Cart</a>
+        </div>
+        <div class="product-card">
+    <img src="{% static 'images/product3.jpg' %}" alt="Floral Kurti">
+    <h3>Floral Kurti</h3>
+    <p>₹649</p>
+    <a href="" class="btn-cart">Add to Cart</a>
+</div>
+
+<div class="product-card">
+    <img src="{% static 'images/product4.jpg' %}" alt="Party Wear Dress">
+    <h3>Party Wear Dress</h3>
+    <p>₹1,299</p>
+    <a href="" class="btn-cart">Add to Cart</a>
+</div>
+
+<div class="product-card">
+    <img src="{% static 'images/product5.jpg' %}" alt="Co-ord Set">
+    <h3>Co-ord Set</h3>
+    <p>₹999</p>
+    <a href="" class="btn-cart">Add to Cart</a>
+</div>
+
+<div class="product-card">
+    <img src="{% static 'images/product6.jpg' %}" alt="Long Maxi Dress">
+    <h3>Long Maxi Dress</h3>
+    <p>₹1,199</p>
+    <a href="" class="btn-cart">Add to Cart</a>
+</div>
+
+<div class="product-card">
+    <img src="{% static 'images/product7.jpg' %}" alt="Denim Look">
+    <h3>Denim Look</h3>
+    <p>₹799</p>
+    <a href="" class="btn-cart">Add to Cart</a>
+</div>
+        <div class="product-card">
+            <img src="{% static 'images/product8.jpg' %}" alt="Anarkali Set">
+            <h3>Anarkali Set</h3>
+            <p>₹899</p>
+            <a href="" class="btn-cart">Add to Cart</a>
+        </div>
+
+        
+    </div>
+</section>
+
+<!-- 🔻 Footer -->
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>

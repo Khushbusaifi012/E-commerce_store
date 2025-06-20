@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - GirlyCart</title>
+      {% load static %}
+
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+  <!-- 🌸 Navbar -->
+<nav class="navbar">
+    <div class="container navbar-flex">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <p class="center-text">Enter your details to login into your account</p>
+     <form method="POST">
+    {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+       
+        <button type="submit">Log In</button>
+         <div class="form-footer">
+          <div class="center-text">
+    <a href="#">Forgot password?</a>
+</div>
+        </div>
+      </form>
+      <p class="center-text">Don’t have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
+  </div>
+</body>
+</html>
+
+<!-- 🔻 Footer -->
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>
