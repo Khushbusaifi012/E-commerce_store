@@ -5,56 +5,50 @@ body {
 }
 
 .navbar {
-    background-color: #FF9898;
-    padding: 15px 20px;
-    color: white;
+    background-color: #ff8a80;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    display: inline-block;
-}
-
-/* Navbar container layout */
 .navbar-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-/* Logo with image and text */
-.logo-container {
-    display: flex;
-    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo-img {
-    height: 100px;       /* Bigger size */
-    width: auto;
-    margin-right: 10px;
+    height: 60px;
+    transition: transform 0.3s ease;
 }
 
-.logo-text {
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
+.logo-img:hover {
+    transform: scale(1.05);
 }
 
-/* Nav links layout */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
-    margin: 0;
-    padding: 0;
 }
 
 .nav-links li a {
-    text-decoration: none;
     color: white;
-    font-weight: bold;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
+
+.nav-links li a:hover {
+    color: #fffde7;
+}
+
 
 .girly-banner {
     position: relative;

@@ -30,7 +30,7 @@
     <div class="product-grid">
       {% for product in products %}
     <div class="product-card">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="200">
         <h3>{{ product.name }}</h3>
         <p>₹{{ product.price }}</p>
         <a href="{% url 'add_to_cart' product.id %}" class="btn-cart">Add to Cart</a>
