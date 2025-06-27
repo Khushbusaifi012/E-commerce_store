@@ -64,7 +64,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    opacity: 0.9; /* Slight transparency */
+    opacity: 0.9;
     border-radius: 8px;
     transition: opacity 0.3s ease;
 }
@@ -85,7 +85,6 @@ body {
     overflow: hidden;
 }
 
-/* Optional transparent overlay effect */
 .hero::before {
     content: "";
     position: absolute;

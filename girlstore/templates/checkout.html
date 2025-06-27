@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - GirlyCart</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background-color: #ff8a80;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .logo-img {
+      height: 50px;
+    }
+
+    .checkout-container {
+      max-width: 900px;
+      background-color: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #ec407a;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .form-section {
+      background-color: #fff8fc;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #f8bbd0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #880e4f;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ec407a;
+    }
+
+    .summary {
+      background-color: #fce4ec;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #f8bbd0;
+    }
+
+    .summary h3 {
+      margin-bottom: 10px;
+      color: #d81b60;
+    }
+
+    .checkout-btn {
+      margin-top: 20px;
+      display: block;
+      padding: 12px;
+      background-color: #ec407a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .checkout-btn:hover {
+      background-color: #d81b60;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff8a80;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!--Navbar-->
+  <nav class="navbar">
+    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'products' %}">Products</a></li>
+      <li><a href="{% url 'cart' %}">Cart</a></li>
+    </ul>
+  </nav>
+
+  <!--Checkout Form-->
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+<form method="post" action="{% url 'checkout' %}">
+
+      {% csrf_token %}
+
+      <!-- Delivery Address -->
+      <div class="form-section">
+        <h3>Delivery Address</h3>
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="address">Street Address</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="zipcode">ZIP Code</label>
+        <input type="text" id="zipcode" name="zipcode" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" required>
+      </div>
+
+      <!-- Billing Info + Summary -->
+      <div class="form-section">
+        <h3>Billing Information</h3>
+        <label for="cardnumber">Card Number</label>
+        <input type="text" id="cardnumber" name="cardnumber" placeholder="1234 5678 9012 3456" required>
+
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" required>
+
+       <div class="summary">
+  <h3>Order Summary</h3>
+  <p>Items Total: ₹{{ total }}</p>
+  <p>Shipping: ₹{{ shipping }}</p>
+  <hr>
+  <p><strong>Grand Total: ₹{{ grand_total }}</strong></p>
+</div>
+
+        <button class="checkout-btn">Place Order</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!--Footer-->
+<footer>
+  &copy; 2025 GirlyCart | All rights reserved 💖
+</footer>
+
+</body>
+</html>

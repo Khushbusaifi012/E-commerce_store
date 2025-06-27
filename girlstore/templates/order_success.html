@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Successful - GirlyCart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            background-color: #fff0f5;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .success-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .success-container h2 {
+            color: #d81b60;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .success-container p {
+            font-size: 18px;
+            color: #6d4c41;
+            margin-bottom: 30px;
+        }
+
+        .success-container a {
+            background-color: #ec407a;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .success-container a:hover {
+            background-color: #c2185b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff8a80;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container">
+    <h2>Thank You for Your Order! 🎀</h2>
+    <p>Your fashion goodies are on their way! 💃 We’ve received your order and will process it with lots of care and love. You’ll receive updates shortly.</p>
+    <p>Thank you for shopping with <strong>GirlyCart</strong> — where style meets confidence 💅.</p>
+
+    <a href="{% url 'home' %}">Continue Shopping 🛍️</a>
+</div>
+
+<footer>
+    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+</footer>
+
+</body>
+</html>

@@ -24,6 +24,5 @@ urlpatterns = [
     path('', include('shop.urls')),
 ]
 
-# 👇 yeh line list ke bahar honi chahiye!
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
