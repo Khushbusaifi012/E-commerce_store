@@ -11,10 +11,8 @@
 {% load static %}
 <!--Navbar-->
 <nav class="navbar">
-    <div class="container navbar-flex">
         <div class="logo-container">
-            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-            
+            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">        
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'home' %}">Home</a></li>
@@ -34,13 +32,49 @@
     </div>
 </section>
 
-<section class="hero">
-    <div class="hero-content">
-        <h2>Trendy Fashion for Every Girl</h2>
-        <p>Discover new styles & trends!</p>
-  
+<div class="custom-hero-section">
+  <div class="hero-image">
+    <img src="{% static 'images/section.jpg' %}" alt="Left Style" />
+  </div>
+
+  <div class="hero-text">
+    <h2>Welcome to GirlyCart</h2>
+    <p>Discover styles that define you.<br>Explore the fashion world made just for girls.</p>
+    <a href="{% url 'products' %}" class="hero-button">Shop Now</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="{% static 'images/section1.jpg' %}" alt="Right Style" />
+  </div>
+</div>
+
+<section class="benefit-section">
+  <h2 class="benefit-title">Made for You, Made with Love</h2>
+  <div class="benefit-cards">
+
+    <div class="card">
+      Girls who are <strong>exploring their fashion style</strong> and want trendy looks that reflect their personality.
     </div>
+
+    <div class="card">
+      College girls seeking <strong>comfortable yet confident</strong> outfits for daily wear and special occasions.
+    </div>
+
+    <div class="card highlighted">
+      Fashion lovers who enjoy <strong>staying up-to-date</strong> with the latest styles and seasonal trends.
+    </div>
+
+    <div class="card">
+      Budget-conscious shoppers who want <strong>affordable fashion</strong> without compromising on style.
+    </div>
+
+    <div class="card">
+      Anyone who believes fashion is a way to <strong>express themselves boldly</strong> and beautifully.
+    </div>
+
+  </div>
 </section>
+
 
 <!--Featured-->
 <section class="products">
@@ -105,7 +139,7 @@
 
 <!--Footer-->
 <footer>
-    <p>&copy; 2025 GirlyCart | All rights reserved 💖</p>
+    <p>&copy; 2025 GirlyCart | All rights reserved </p>
 </footer>
 
 </body>
