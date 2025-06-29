@@ -9,7 +9,6 @@ from django.shortcuts import get_object_or_404
 from .models import Product
 from .models import CartItem
 
-
 # Create your views here.
 def home(request):
     return render(request, 'home.html')    #for home file

@@ -129,19 +129,36 @@
 </head>
 <body>
 
-<!--Navbar-->
+<!-- Navbar -->
 <nav class="navbar">
-        <div class="logo-container">
-            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-        </div>
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'products' %}">Products</a></li>
-            <li><a href="{% url 'cart' %}">Cart</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-        </ul>
-    </div>
+  <div class="logo-container">
+    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'products' %}">Products</a></li>
+    <li><a href="{% url 'cart' %}">Cart</a></li>
+
+    <!-- Profile dropdown -->
+    <li class="profile-dropdown">
+      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
+      <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+      </ul>
+    </li>
+  </ul>
 </nav>
 
 <!--Cart Section-->

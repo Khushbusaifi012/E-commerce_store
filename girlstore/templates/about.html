@@ -2,72 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>About Us - GirlyCart</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
-<!--Navbar-->
+    <!-- Navbar -->
 <nav class="navbar">
-        <div class="logo-container">
-            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-            
-        </div>
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'products' %}">Products</a></li>
-            <li><a href="{% url 'cart' %}">Cart</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-        </ul>
-    </div>
+  <div class="logo-container">
+    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'products' %}">Products</a></li>
+    <li><a href="{% url 'cart' %}">Cart</a></li>
+
+    <!-- Profile dropdown -->
+    <li class="profile-dropdown">
+      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
+      <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+      </ul>
+    </li>
+  </ul>
 </nav>
 
-<!--About Section-->
-<section class="about">
-    <div class="container">
-        <h2>About GirlyCart:-</h2>
-        <p>
-            Welcome to <strong>GirlyCart</strong> – your one-stop destination for trendy and affordable girls' clothing! 
-            Our goal is to bring fashion that speaks confidence, style, and comfort into your wardrobe.
-        </p>
-        <p>
-            At GirlyCart, we believe that every girl deserves to express herself through her unique fashion sense. 
-            Whether you're looking for casual wear, party outfits, or traditional ethnic styles – we’ve got you covered.
-        </p>
-        <p>
-            Founded in 2025, GirlyCart is run by a passionate team that understands the latest fashion trends 
-            and strives to deliver quality with love.
-        </p>
+
+<!-- About Us Section -->
+<section class="about-section-bg">
+  <div class="about-title-center">
+    <h2>About Us</h2>
+    <p>Style that Empowers Every Girl!</p>
+  </div>
+
+  <div class="about-flex">
+    <div class="about-text-left">
+      <p>
+        Welcome to <strong>GirlyCart</strong> – your go-to destination for trendy, affordable, and stylish clothing crafted especially for girls.
+        Our mission is to help you express your personality through fashion that feels as good as it looks.
+      </p>
+      <p>
+        Whether you're dressing up for a college day, a festive occasion, or a casual outing with friends, GirlyCart offers you a wide variety of
+        outfits designed to keep you comfortable, confident, and beautiful. Explore the latest collections and let your wardrobe shine with freshness and charm.
+      </p>
     </div>
+
+    <div class="about-img-right">
+      <img src="{% static 'images/about_section.jpg' %}" alt="About GirlyCart" />
+    </div>
+  </div>
 </section>
 
-<!--Our Mission-->
-<section class="mission">
-    <div class="container">
-        <h3>Our Mission:-</h3>
-        <p>
-            To provide fashionable and comfortable clothing for girls across India, while ensuring affordability 
-            and fast delivery right to your doorstep.
-        </p>
+<!-- Creator Section -->
+<section class="creator-info">
+  <h3 class="creator-heading">Meet the Creator</h3>
+  <div class="creator-content">
+    <div class="creator-image">
+      <img src="{% static 'images/member1.jpg' %}" alt="Khushbu Saifi">
     </div>
+    <div class="creator-text">
+      <p>
+        Hi, I'm <strong>Khushbu Saifi</strong> – the developer behind <strong>GirlyCart</strong>.  
+        I created this project as a fusion of my love for fashion and technology.  
+        This platform is my initiative to learn, grow, and bring value through beautiful, usable web experiences.
+       I have worked as a full stack developer in this project, from frontend to backend functionality and also from database.
+      </p>
+
+      <ul class="creator-links">
+  <li>
+    <a href="https://www.linkedin.com/in/khushbu-saifi" target="_blank">
+      <i class="fab fa-linkedin" style="color: #0A66C2;"></i> LinkedIn
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/Khushbusaifi012" target="_blank">
+      <i class="fab fa-github" style="color: #171515;"></i> GitHub
+    </a>
+  </li>
+  <li>
+    <a href="https://khushbusaifi.netlify.app/" target="_blank">
+      <i class="fas fa-globe" style="color: #4CAF50;"></i> Portfolio
+    </a>
+  </li>
+</ul>
+    </div>
+  </div>
 </section>
 
-<!--Meet the Team-->
-<section class="team">
-    <div class="container">
-        <h3>Meet the Founder:-</h3>
-        <p>
-            <strong>Khushbu Saifi</strong> - A young aspiring developer who started GirlyCart to combine her love 
-            for technology and fashion.
-        </p>
-    </div>
-</section>
 
 <!--Footer-->
 <footer>
-    <p>&copy; 2025 GirlyCart | All rights reserved</p>
+    <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+    <p>&copy;  2025 GirlyCart | All rights reserved</p>
 </footer>
 
 </body>
