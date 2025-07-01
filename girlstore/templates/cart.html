@@ -5,58 +5,15 @@
     <title>Your Cart - GirlyCart</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #fce4ec;
-        }
-
-        .navbar {
-            background-color: #ff8a80;
-            padding: 15px 0;
-        }
-
-        .navbar-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .logo-img {
-            height: 50px;
-        }
-
+  
+<style>
         .cart-section {
             padding: 40px 20px;
-            background-color: #f8bbd0;
+            background: url('images/bg.jpg') no-repeat center center/cover;
             flex: 1;
         }
 
-        h2 {
+        h2 {    
             text-align: center;
             color: #880e4f;
             margin-bottom: 30px;
@@ -107,12 +64,20 @@
             background-color: #d81b60;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #ff8a80;
-            color: white;
-        }
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    
+     }
+     body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.cart-section {
+    flex: 1;
+}
 
         .empty-message {
             text-align: center;
@@ -201,7 +166,11 @@
 
 <!--Footer-->
 <footer>
-    <p>&copy; 2025 GirlyCart | All rights reserved</p>
+    <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+    <p>&copy;  2025 GirlyCart | All rights reserved</p>
 </footer>
 
 </body>

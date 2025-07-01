@@ -302,7 +302,6 @@ footer {
   border-radius: 10px;
 }
 
-
 /* Creator Info Section */
 .creator-info {
   background-color: #fff0f5;
@@ -318,7 +317,6 @@ footer {
   display: block;
   width: 100%;
 }
-
 
 .creator-content {
   display: flex;
@@ -379,9 +377,9 @@ footer {
   text-decoration: underline;
 }
 
-
 /* Products */
 .products {
+    background: url('images/bg.jpg') no-repeat center center/cover;
     background-color: #fff0f5;
     padding: 40px;
     text-align: center;
@@ -503,3 +501,4 @@ footer {
     margin-bottom: 20px;
     color: #000000;
 }
+
