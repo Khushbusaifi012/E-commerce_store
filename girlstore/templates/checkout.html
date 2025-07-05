@@ -23,7 +23,7 @@
     }
 
     .navbar {
-      background-color: #ff8a80;
+      background-color: #ffffff;
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
@@ -43,7 +43,7 @@
     }
 
     .logo-img {
-      height: 50px;
+      height: 100px;
     }
 
     .checkout-container {
@@ -122,8 +122,8 @@
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #ff8a80;
-      color: white;
+      background-color: white;
+      color: black;
     }
 
     @media (max-width: 768px) {
@@ -137,15 +137,38 @@
 
 <div class="wrapper">
 
-  <!--Navbar-->
-  <nav class="navbar">
+  <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo-container">
     <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-    <ul class="nav-links">
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'products' %}">Products</a></li>
-      <li><a href="{% url 'cart' %}">Cart</a></li>
-    </ul>
-  </nav>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'products' %}">Products</a></li>
+    <li><a href="{% url 'cart' %}">Cart</a></li>
+
+    <!-- Profile dropdown -->
+    <li class="profile-dropdown">
+      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
+      <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
   <!--Checkout Form-->
   <div class="checkout-container">
@@ -202,7 +225,11 @@
 
 <!--Footer-->
 <footer>
-  &copy; 2025 GirlyCart | All rights reserved
+    <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+    <p>&copy;  2025 GirlyCart | All rights reserved</p>
 </footer>
 
 </body>

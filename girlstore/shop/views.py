@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.shortcuts import render, redirect
@@ -42,13 +43,21 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, "Logged in successfully.")
+            messages.success(request, "Login successfully.")
             return redirect('home')
         else:
-            messages.error(request, "Invalid credentials.")
+            messages.error(request, "Invalid username or password.")
+            return render(request, 'login.html', {'form': form})
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+#for logout;
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Logged out successfully.")
+    return redirect('home')
 
 #for products
 def products(request):
@@ -67,6 +76,7 @@ def cart_view(request):
         return render(request, 'cart.html', {'cart_items': cart_items})
     else:
         return redirect('login')
+    
 
 #for cart item addition;
 @login_required

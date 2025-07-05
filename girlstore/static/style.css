@@ -1,7 +1,8 @@
 body {
+   background-color: #fff0f5;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    
     color: #000000;
 }
 
@@ -234,7 +235,7 @@ footer {
 
 /* About Section */
 .about-section-bg {
-  background: url('images/bg.jpg') no-repeat center center/cover;
+    background: url('images/bg1.jpg') no-repeat center center/cover;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -304,7 +305,7 @@ footer {
 
 /* Creator Info Section */
 .creator-info {
-  background-color: #fff0f5;
+     background: url('images/bg2.jpg') no-repeat center center/cover;
   padding: 40px 10px 20px;
   position: relative;
 }
@@ -377,69 +378,9 @@ footer {
   text-decoration: underline;
 }
 
-/* Login and signup Modal with js */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  position: relative;
-  width: 90%;
-  max-width: 400px;
-}
-
-.modal-content h2 {
-  color: #a53860;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-  border: 0px solid #ddd;
-  border-radius: 6px;
-}
-
-.modal-content button {
-  width: 100%;
-  background: #a53860;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.modal-content .close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 20px;
-  cursor: pointer;
-  color: #555;
-}
-
 /* Products Section */
 .products {
-    background: url('images/bg.jpg') no-repeat center center/cover;
+    background: url('images/bg2.jpg') no-repeat center center/cover;
     background-color: #fff0f5;
     padding: 40px;
     text-align: center;
@@ -468,6 +409,26 @@ footer {
     object-fit: cover;
 }
 
+.btn-cart {
+  display: inline-block;
+  background: #a53860;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.btn-cart:hover {
+  background: #880e4f;
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Footer */
 footer {
     background-color: #ffffff;
@@ -478,10 +439,10 @@ footer {
 
 /* Login Page */
 .login-container {
+    background: url('images/bg.jpg') no-repeat center center/cover; 
     width: 350px;
     margin: 100px auto;
     padding: 30px;
-    background: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -522,7 +483,7 @@ footer {
     width: 350px;
     margin: 100px auto;
     padding: 30px;
-    background: #fff;
+       background: url('images/bg.jpg') no-repeat center center/cover;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -563,3 +524,36 @@ footer {
     color: #000000;
 }
 
+/* Custom Alert Messages */
+.custom-message-wrapper {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.custom-alert {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: #5cb85c; /* Green for success */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  animation: fadeOut 3s ease-in-out forwards;
+}
+
+.custom-alert.error {
+  background-color: #d9534f; /* Red for error */
+}
+
+.custom-alert.info {
+  background-color: #5bc0de; /* Blue for info */
+}
+
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
