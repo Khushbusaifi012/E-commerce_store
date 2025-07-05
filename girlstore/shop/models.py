@@ -42,5 +42,5 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
-    def __str__(self):
+    def __str__(self):  #method to calculate order item
         return f"{self.product.name} x {self.quantity}"

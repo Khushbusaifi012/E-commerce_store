@@ -377,7 +377,67 @@ footer {
   text-decoration: underline;
 }
 
-/* Products */
+/* Login and signup Modal with js */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  color: #a53860;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 0px solid #ddd;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 100%;
+  background: #a53860;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Products Section */
 .products {
     background: url('images/bg.jpg') no-repeat center center/cover;
     background-color: #fff0f5;
@@ -385,7 +445,7 @@ footer {
     text-align: center;
 }
 
-.product-grid {
+.product-grid { 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -476,6 +536,7 @@ footer {
 .signup-container input[type="email"],
 .signup-container input[type="password"] {
     width: 100%;
+    text-align: center;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ef88ad;

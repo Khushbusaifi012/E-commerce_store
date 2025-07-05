@@ -29,8 +29,9 @@
     <p class="center-text">Enter your details to login into your account</p>
     <form method="POST">
       {% csrf_token %}
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
+    <input type="text" name="username" autocomplete="username" />
+<input type="password" name="password" autocomplete="current-password" />
+
       {% if error %}
         <p style="color:red">{{ error }}</p>
       {% endif %}
