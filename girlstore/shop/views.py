@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .models import Product
+from .models import Product, CartItem
 from .models import CartItem
 
 # Create your views here.
@@ -88,6 +89,25 @@ def add_to_cart(request, product_id):
         cart_item.quantity += 1
         cart_item.save()
 
+    return redirect('cart')
+
+#for cart item update;
+@login_required
+def update_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart_item = CartItem.objects.filter(user=request.user, product=product).first()
+
+    if cart_item and request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'increase':
+            cart_item.quantity += 1
+            cart_item.save()
+        elif action == 'decrease':
+            cart_item.quantity -= 1
+            if cart_item.quantity <= 0:
+                cart_item.delete()
+            else:
+                cart_item.save()
     return redirect('cart')
 
 #for checkout;

@@ -6,14 +6,14 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+    <style>
         .cart-section {
-    background: url('images/bg.jpg') no-repeat center center/cover;
-    background-size: cover;
-    background-position: center;
-    min-height: 400px; 
-    padding: 40px 0;
-}
+            background: url("{% static 'images/bg2.jpg' %}") no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+            min-height: 400px; 
+            padding: 40px 0;
+        }
 
         h2 {    
             text-align: center;
@@ -67,19 +67,20 @@
         }
 
         html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    
-     }
-     body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-.cart-section {
-    flex: 1;
-}
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-section {
+            flex: 1;
+        }
 
         .empty-message {
             text-align: center;
@@ -92,38 +93,51 @@
             color: #d81b60;
             text-decoration: underline;
         }
+
+        .cart-table button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #ec407a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .cart-table button:hover {
+            background-color: #d81b60;
+        }
     </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="logo-container">
-    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-  </div>
+    <div class="logo-container">
+        <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
+    </div>
 
-  <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'products' %}">Products</a></li>
-    <li><a href="{% url 'cart' %}">Cart</a></li>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'products' %}">Products</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
 
-    <!-- Profile dropdown -->
-    <li class="profile-dropdown">
-      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-          <li>
-            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-              {% csrf_token %}
-              <button type="submit" class="logout-btn">Logout</button>
-            </form>
-          </li>
-        {% else %}
-        {% endif %}
-      </ul>
-    </li>
-  </ul>
+        <li class="profile-dropdown">
+            <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
+            <ul class="dropdown-menu">
+                {% if user.is_authenticated %}
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">Logout</button>
+                        </form>
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
 </nav>
 
 <!--Cart Section-->
@@ -150,14 +164,26 @@
                         </td>
                         <td>{{ item.product.name }}</td>
                         <td>{{ item.product.price }}</td>
-                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <form action="{% url 'update_cart' item.product.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="decrease">
+                                <button type="submit">−</button>
+                            </form>
+                            {{ item.quantity }}
+                            <form action="{% url 'update_cart' item.product.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="increase">
+                                <button type="submit">+</button>
+                            </form>
+                        </td>
                         <td>{{ item.total }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-          <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
+            <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
         {% else %}
             <p class="empty-message">Your cart is currently empty. Start shopping <a href="{% url 'products' %}">here</a>!</p>
         {% endif %}
@@ -170,7 +196,7 @@
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
     </div>
-    <p>&copy;  2025 GirlyCart | All rights reserved</p>
+    <p>&copy; 2025 GirlyCart | All rights reserved</p>
 </footer>
 
 </body>
