@@ -29,7 +29,7 @@ def signup_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Account created successfully. Please log in.")
-            return redirect('login')
+            return render(request, 'login.html', {'form': AuthenticationForm()})
         else:
             messages.error(request, "Something went wrong. Please try again.")
     else:
@@ -45,7 +45,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, "Login successfully.")
-            return redirect('home')
+            return render(request, 'login.html', {'form': form})          
         else:
             messages.error(request, "Invalid username or password.")
             return render(request, 'login.html', {'form': form})

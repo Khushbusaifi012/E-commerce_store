@@ -9,6 +9,25 @@
 </head>
 <body>
 
+<!-- Custom messages -->
+{% if messages %}
+  <div class="custom-message-wrapper">
+    {% for message in messages %}
+      <div class="custom-alert {{ message.tags }}">
+        <span class="custom-icon">
+          {% if "error" in message.tags %} ❌
+          {% elif "success" in message.tags %} ✔
+          {% elif "info" in message.tags %} ℹ️
+          {% else %} ✔
+          {% endif %}
+        </span>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+  
+
 <!--Navbar-->
 <nav class="navbar">
         <div class="logo-container">
