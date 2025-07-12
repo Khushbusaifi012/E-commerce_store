@@ -1,0 +1,13 @@
+# Ignore Python virtual environments
+venv/
+myvenv/
+.venv/
+ENV/
+env/
+
+# Other common ignores
+__pycache__/
+*.py[cod]
+*.log
+*.sqlite3
+.env
