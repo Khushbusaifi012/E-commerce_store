@@ -501,7 +501,7 @@ footer {
 .signup-container input[type="email"],
 .signup-container input[type="password"] {
     width: 100%;
-    text-align: center;
+    text-align: left;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ef88ad;

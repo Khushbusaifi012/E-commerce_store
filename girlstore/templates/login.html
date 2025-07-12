@@ -50,8 +50,8 @@
     <p class="center-text">Enter your details to login into your account</p>
     <form method="POST">
       {% csrf_token %}
-    <input type="text" name="username" autocomplete="username" />
-<input type="password" name="password" autocomplete="current-password" />
+ <input type="text" name="username" placeholder="Username" autocomplete="username" required />
+  <input type="password" name="password" placeholder="Password" autocomplete="current-password" required />
 
       {% if error %}
         <p style="color:red">{{ error }}</p>
@@ -64,7 +64,7 @@
       </div>
     </form>
     <p class="center-text">Don’t have an account? <a href="{% url 'signup' %}">Sign up</a></p>
-  </div>
+  </div>  
 </div>
 
 <footer>
