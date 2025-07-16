@@ -487,7 +487,7 @@ footer {
     width: 350px;
     margin: 100px auto;
     padding: 30px;
-       background: url('images/bg.jpg') no-repeat center center/cover;
+    background: url('images/bg.jpg') no-repeat center center/cover;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
