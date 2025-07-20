@@ -28,14 +28,14 @@ cd E-commerce_store
 cd girlstore
 
 # 2. Create a virtual environment
-python -m venv venv
+python -m venv venv,
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
 
 # 4. Run migrations
-python manage.py makemigrations
+python manage.py makemigrations,
 python manage.py migrate
 
 # 5. Create a superuser (for admin access)
