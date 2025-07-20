@@ -24,7 +24,9 @@ This is a full-stack E-commerce web application built with Django. The store is 
 Follow the steps below to run the project locally:
 # 1. Clone the repository
 git clone https://github.com/your-username/E-commerce_store.git
+
 cd E-commerce_store
+
 cd girlstore
 
 # 2. Create a virtual environment
