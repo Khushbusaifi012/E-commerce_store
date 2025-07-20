@@ -19,3 +19,44 @@ This is a full-stack E-commerce web application built with Django. The store is 
 | Frontend     | HTML, CSS, Bootstrap |
 | Authentication | Django's built-in auth system |
 | Admin Panel  | Django Admin       |
+
+🔧 Installation
+Follow the steps below to run the project locally:
+# 1. Clone the repository
+git clone https://github.com/your-username/E-commerce_store.git
+cd E-commerce_store
+cd girlstore
+
+# 2. Create a virtual environment
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Run migrations
+python manage.py makemigrations
+python manage.py migrate
+
+# 5. Create a superuser (for admin access)
+python manage.py createsuperuser
+
+# 6. Run the development server
+python manage.py runserver
+Then open your browser and go to:
+👉 http://127.0.0.1:8000/
+
+🛡️ Admin Panel Access
+After running the server:
+http://127.0.0.1:8000/admin/
+Login using the superuser credentials you created.
+
+E-commerce_store/
+│
+├── shop/              # Main Django app (models, views, URLs)
+├── static/            # Static files (CSS, JS, images)
+├── templates/         # HTML templates
+├── media/             # Uploaded product images
+├── db.sqlite3         # Default database but I have used MYSQL
+├── manage.py          # Django management script
+└── requirements.txt   # Python dependencies (optional)
