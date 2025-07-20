@@ -42,13 +42,13 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # 6. Run the development server
-python manage.py runserver
+python manage.py runserver,
 Then open your browser and go to:
 👉 http://127.0.0.1:8000/
 
 🛡️ Admin Panel Access
 After running the server:
-http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/admin/,
 Login using the superuser credentials you created.
 
 E-commerce_store/
