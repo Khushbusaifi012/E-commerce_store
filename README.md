@@ -55,8 +55,9 @@ After running the server:
 http://127.0.0.1:8000/admin/,
 Login using the superuser credentials you created.
 
+📁 Project Structure:-
 E-commerce_store/
-│
+
 ├── shop/              # Main Django app (models, views, URLs)
 
 ├── static/            # Static files (CSS, JS, images)
