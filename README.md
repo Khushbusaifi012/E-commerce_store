@@ -20,6 +20,22 @@ This is a full-stack E-commerce web application built with Django. The store is 
 | Authentication | Django's built-in auth system |
 | Admin Panel  | Django Admin       |
 
+📁 Project Structure:- E-commerce_store/
+
+├── shop/ # Main Django app (models, views, URLs)
+
+├── static/ # Static files (CSS, JS, images)
+
+├── templates/ # HTML templates
+
+├── media/ # Uploaded product images
+
+├── db.sqlite3 # Default database but I have used MYSQL
+
+├── manage.py # Django management script
+
+└── requirements.txt # Python dependencies (optional)
+
 🔧 Installation
 Follow the steps below to run the project locally:
 # 1. Clone the repository
@@ -54,20 +70,3 @@ Then open your browser and go to:
 After running the server:
 http://127.0.0.1:8000/admin/,
 Login using the superuser credentials you created.
-
-📁 Project Structure:-
-E-commerce_store/
-
-├── shop/              # Main Django app (models, views, URLs)
-
-├── static/            # Static files (CSS, JS, images)
-
-├── templates/         # HTML templates
-
-├── media/             # Uploaded product images
-
-├── db.sqlite3         # Default database but I have used MYSQL
-
-├── manage.py          # Django management script
-
-└── requirements.txt   # Python dependencies (optional)
