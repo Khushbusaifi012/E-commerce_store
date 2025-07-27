@@ -1,7 +1,7 @@
 🛍️ E-commerce Clothing Store
 This is a full-stack E-commerce web application built with Django. The store is focused on selling girls' clothing and includes essential features such as user authentication, product catalog, cart functionality, order tracking, and admin dashboard.
 
-🚀 Features- 
+🚀 Features :-
 - 👗 Product catalog for girls' clothing
 - 🛒 Add to cart and checkout functionality
 - 👤 User registration and login
@@ -10,7 +10,7 @@ This is a full-stack E-commerce web application built with Django. The store is 
 - 📦 Inventory management
 - 📋 Clean UI using Django templates and static files
 
-🧑‍💻 Tech Stack
+🧑‍💻 Tech Stack :-
 
 | Category     | Technology         |
 |--------------|--------------------|
