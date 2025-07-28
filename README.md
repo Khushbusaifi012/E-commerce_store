@@ -62,7 +62,8 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # 6. Run the development server
-python manage.py runserver,
+python manage.py runserver
+
 Then open your browser and go to:
 👉 http://127.0.0.1:8000/
 
