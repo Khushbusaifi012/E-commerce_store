@@ -140,7 +140,7 @@
 
 <div class="wrapper">
 
-  <!-- Navbar -->
+<!-- Navbar -->
 <nav class="navbar">
   <div class="logo-container">
     <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
@@ -152,7 +152,7 @@
     <li><a href="{% url 'products' %}">Products</a></li>
     <li><a href="{% url 'cart' %}">Cart</a></li>
 
-    <!-- Profile dropdown -->
+<!-- Profile dropdown -->
     <li class="profile-dropdown">
       <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
       <ul class="dropdown-menu">
@@ -173,14 +173,14 @@
 </nav>
 
 
-  <!--Checkout Form-->
+<!--Checkout Form-->
   <div class="checkout-container">
     <h2>Checkout</h2>
 <form method="post" action="{% url 'checkout' %}">
 
       {% csrf_token %}
 
-      <!-- Delivery Address -->
+<!-- Delivery Address -->
       <div class="form-section">
         <h3>Delivery Address</h3>
         <label for="fullname">Full Name</label>
@@ -199,7 +199,7 @@
         <input type="text" id="phone" name="phone" required>
       </div>
 
-      <!-- Billing Info + Summary -->
+<!-- Billing Info + Summary -->
       <div class="form-section">
         <h3>Billing Information</h3>
         <label for="cardnumber">Card Number</label>
