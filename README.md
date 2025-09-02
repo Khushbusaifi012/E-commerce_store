@@ -6,7 +6,7 @@ This is a full-stack E-commerce web application built with Django. The store is 
 - 👗 Product catalog for girls' clothing
 - 🛒 Add to cart and checkout functionality
 - 👤 User registration and login
-- 🧾 Order management and invoice generation
+- 🧾 Order management
 - 🛠️ Admin panel for managing products and orders
 - 📦 Inventory management
 - 📋 Clean UI using Django templates and static files
