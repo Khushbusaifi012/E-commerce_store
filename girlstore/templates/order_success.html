@@ -1,86 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Order Successful - GirlyCart</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
-       body {
-    background: url("{% static 'images/bg2.jpg' %}") no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-        .success-container {
-            max-width: 800px;
-            margin: 100px auto;
-            padding: 40px;
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .success-container h2 {
-            color: #d81b60;
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .success-container p {
-            font-size: 18px;
-            color: #6d4c41;
-            margin-bottom: 30px;
-        }
-
-        .success-container a {
-            background-color: #ec407a;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .success-container a:hover {
-            background-color: #c2185b;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            color: black;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-
-<div class="success-container">
-    <h2>Thank You for Your Order!</h2>
-    <p>Your fashion goodies are on their way! We’ve received your order and will process it with lots of care and love. You’ll receive updates shortly.</p>
-    <p>Thank you for shopping with <strong>GirlyCart</strong> — where style meets confidence.</p>
-
-    <a href="{% url 'home' %}">Continue Shopping!</a>
-</div>
-
-<!--Footer-->
-<footer>
-    <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Order confirmed{% endblock %}
+{% block content %}
+<div class="flex min-h-[65vh] flex-col items-center justify-center px-4 py-16 sm:px-6">
+    <div class="w-full max-w-lg rounded-3xl border border-zinc-200/80 bg-white/95 px-8 py-12 text-center shadow-[0_24px_60px_-20px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-md dark:border-zinc-700 dark:bg-zinc-900/90 dark:ring-white/5">
+        <div class="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-400" aria-hidden="true">✓</div>
+        <h1 class="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">Thank you!</h1>
+        <p class="mt-4 text-zinc-600 dark:text-zinc-400">Your order’s in — we're packing every piece with extra care.</p>
+        <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-500">Updates will follow soon. Thanks for trusting <strong class="font-semibold text-rose-600 dark:text-rose-400">GirlyCart</strong>.</p>
+        <a href="{% url 'home' %}" class="mt-8 inline-flex rounded-full bg-gradient-to-r from-rose-600 to-violet-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/25 transition-[transform] hover:from-rose-500 hover:to-violet-500 active:scale-[0.98] motion-reduce:active:scale-100">Continue shopping</a>
     </div>
-    <p>&copy;  2025 GirlyCart | All rights reserved</p>
-</footer>
-
-</body>
-</html>
+</div>
+{% endblock %}

@@ -1,73 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Login - GirlyCart</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
-<!-- Custom messages -->
-  {% if messages %}
-  <div class="custom-message-wrapper">
-    {% for message in messages %}
-      <div class="custom-alert {{ message.tags }}">
-        <span class="custom-icon">
-          {% if "error" in message.tags %} ❌
-          {% elif "success" in message.tags %} ✔
-          {% elif "info" in message.tags %} ℹ️
-          {% else %} ✔
-          {% endif %}
-        </span>
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-<!-- Navbar -->
-<nav class="navbar">
-    <div class="logo-container">
-      <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-    </div>
-    <ul class="nav-links">
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'about' %}">About</a></li>
-      <li><a href="{% url 'products' %}">Products</a></li>
-      <li><a href="{% url 'cart' %}">Cart</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="login-container">
-  <div class="login-box">
-    <h2>Login</h2>
-    <p class="center-text">Enter your details to login into your account</p>
-    <form method="POST">
-      {% csrf_token %}
- <input type="text" name="username" placeholder="Username" autocomplete="username" required />
-  <input type="password" name="password" placeholder="Password" autocomplete="current-password" required />
-
-      {% if error %}
-        <p style="color:red">{{ error }}</p>
-      {% endif %}
-      <button type="submit">Log In</button>
-      <div class="form-footer">
-        <div class="center-text">
-          <a href="#">Forgot password?</a>
-        </div>
-      </div>
-    </form>
-    <p class="center-text">Don’t have an account? <a href="{% url 'signup' %}">Sign up</a></p>
-  </div>  
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-4 py-16 sm:px-6">
+    <div class="pointer-events-none absolute -left-24 top-1/4 size-64 rounded-full bg-rose-400/30 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -right-20 bottom-1/4 size-56 rounded-full bg-violet-400/25 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="relative w-full max-w-md rounded-3xl border border-zinc-200/80 bg-white/90 p-8 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-md dark:border-zinc-700/80 dark:bg-zinc-900/85 dark:ring-white/5 sm:p-10">
+        <h1 class="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Welcome back</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Sign in with your GirlyCart account.</p>
+        <form method="post" class="mt-8 space-y-4">
+            {% csrf_token %}
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <div>
+                <label for="username" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Username</label>
+                <input id="username" type="text" name="username" autocomplete="username" required class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition placeholder:text-zinc-400 focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900" placeholder="you@example">
+            </div>
+            <div>
+                <label for="password" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Password</label>
+                <input id="password" type="password" name="password" autocomplete="current-password" required class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition placeholder:text-zinc-400 focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900" placeholder="••••••••">
+            </div>
+            {% if error %}
+            <p class="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/80 dark:text-red-200">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="w-full rounded-full bg-gradient-to-r from-rose-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/30 transition-[transform,box-shadow] hover:from-rose-500 hover:to-violet-500 hover:shadow-rose-500/40 active:scale-[0.98] motion-reduce:active:scale-100">Log in</button>
+            <div class="text-center">
+                <a href="#" class="text-sm font-medium text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">Forgot password?</a>
+            </div>
+        </form>
+        <p class="mt-8 border-t border-zinc-100 pt-8 text-center text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">New here? <a href="{% url 'signup' %}" class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">Create an account</a></p>
 </div>
-
-<footer>
-  <p>&copy; 2025 GirlyCart | All rights reserved</p>
-</footer>
-</body>
-</html>
+</div>
+{% endblock %}

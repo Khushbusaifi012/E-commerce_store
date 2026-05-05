@@ -1,19 +1,13 @@
-from django.shortcuts import render,redirect
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import CustomUserCreationForm
-from django.shortcuts import render, redirect
-from django import forms
-from .models import CartItem, Order, OrderItem
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from .models import Product
-from .models import Product, CartItem
-from .models import CartItem
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import CustomUserCreationForm
+from .models import CartItem, Order, OrderItem, Product
 
 # Create your views here.
 def home(request):
@@ -45,7 +39,14 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, "Login successfully.")
-            return render(request, 'login.html', {'form': form})          
+            next_url = (request.POST.get('next') or '').strip()
+            if next_url and url_has_allowed_host_and_scheme(
+                next_url,
+                allowed_hosts={request.get_host()},
+                require_https=request.is_secure(),
+            ):
+                return redirect(next_url)
+            return redirect('home')
         else:
             messages.error(request, "Invalid username or password.")
             return render(request, 'login.html', {'form': form})
@@ -63,7 +64,17 @@ def logout_view(request):
 #for products
 def products(request):
     all_products = Product.objects.all()
-    return render(request, 'products.html', {'products': all_products})
+    cart_item_count = 0
+    cart_quantity_total = 0
+    if request.user.is_authenticated:
+        items = CartItem.objects.filter(user=request.user)
+        cart_item_count = items.count()
+        cart_quantity_total = sum(item.quantity for item in items)
+    return render(request, 'products.html', {
+        'products': all_products,
+        'cart_item_count': cart_item_count,
+        'cart_quantity_total': cart_quantity_total,
+    })
 
 #for cart
 def cart_view(request):

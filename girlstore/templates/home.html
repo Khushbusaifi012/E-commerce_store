@@ -1,190 +1,167 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>GirlyCart - Girls Clothing</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
-<!-- Custom Messages -->
-{% if messages %}
-  <div class="custom-message-wrapper">
-    {% for message in messages %}
-      <div class="custom-alert {{ message.tags }}">
-        <span class="custom-icon">
-          {% if "error" in message.tags %}
-            ❌
-          {% elif "success" in message.tags %}
-            ✔
-          {% elif "info" in message.tags %}
-            ℹ️
-          {% else %}
-            ✔
-          {% endif %}
-        </span>
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo-container">
-    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-  </div>
-
-  <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'products' %}">Products</a></li>
-    <li><a href="{% url 'cart' %}">Cart</a></li>
-
-<!-- Profile dropdown -->
-    <li class="profile-dropdown">
-      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-          <li>
-            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-              {% csrf_token %}
-              <button type="submit" class="logout-btn">Logout</button>
-            </form>
-          </li>
-        {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Signup</a></li>
-        {% endif %}
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-<!--Hero Banner-->
-<section class="girly-banner">
-    <div class="banner-overlay">
-        <img src="{% static 'images/banner.jpg' %}" alt="Fashion Banner">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="relative overflow-hidden bg-zinc-900">
+    <div class="pointer-events-none absolute -left-40 top-1/4 size-[28rem] rounded-full bg-rose-500/20 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -right-24 bottom-0 size-[22rem] rounded-full bg-violet-600/20 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 via-rose-900/70 to-violet-900/80" aria-hidden="true"></div>
+    <div class="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-24 pt-20 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-28 lg:pt-24">
+        <div class="max-w-xl animate-fade-up">
+            <p class="mb-4 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-rose-100 ring-1 ring-white/25 backdrop-blur-sm">New season · Everyday glam</p>
+            <h1 class="font-display text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Closet refresh, <span class="bg-gradient-to-r from-rose-200 to-violet-200 bg-clip-text text-transparent">effortlessly</span> yours.
+            </h1>
+            <p class="mt-5 text-lg leading-relaxed text-zinc-300">Soft fits, standout prints, and prices that smile back. Built for campus, parties, and everything between.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="{% url 'products' %}" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-zinc-900 shadow-lg shadow-black/20 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:bg-zinc-50 hover:shadow-xl active:scale-[0.98] motion-reduce:transform-none">Shop collection</a>
+                <a href="{% url 'about' %}" class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-[transform,background-color] hover:bg-white/18 active:scale-[0.98] motion-reduce:transform-none">Our story</a>
+            </div>
+        </div>
+        <div class="relative flex flex-1 justify-center motion-safe:animate-float-soft lg:justify-end">
+            <div class="grid w-full max-w-md grid-cols-2 gap-3 sm:max-w-lg sm:gap-4">
+                <div class="overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-2 ring-white/15">
+                    <img src="{% static 'images/section.jpg' %}" alt="" class="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-[1.03]">
+                </div>
+                <div class="translate-y-6 overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-2 ring-white/15 motion-reduce:translate-y-0 sm:translate-y-8">
+                    <img src="{% static 'images/section1.jpg' %}" alt="" class="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-105">
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<div class="custom-hero-section">
-  <div class="hero-image">
-    <img src="{% static 'images/section.jpg' %}" alt="Left Style" />
-  </div>
-
-  <div class="hero-text">
-    <h2>Welcome to GirlyCart</h2>
-    <p>Discover styles that define you.<br>Explore the fashion world made just for girls.</p>
-    <a href="{% url 'products' %}" class="hero-button">Shop Now</a>
-  </div>
-
-  <div class="hero-image">
-    <img src="{% static 'images/section1.jpg' %}" alt="Right Style" />
-  </div>
-</div>
-
-<section class="benefit-section">
-  <h2 class="benefit-title">Made for You, Made with Love</h2>
-  <div class="benefit-cards">
-
-    <div class="card">
-      Girls who are <strong>exploring their fashion style</strong> and want trendy looks that reflect their personality.
+<section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="text-center">
+        <h2 class="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">Made for you, made with love</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-zinc-600 dark:text-zinc-400">Curated moods — from minimal campus days to full festive flex.</p>
     </div>
-
-    <div class="card">
-      College girls seeking <strong>comfortable yet confident</strong> outfits for daily wear and special occasions.
-    </div>
-
-    <div class="card highlighted">
-      Fashion lovers who enjoy <strong>staying up-to-date</strong> with the latest styles and seasonal trends.
-    </div>
-
-    <div class="card">
-      Budget-conscious shoppers who want <strong>affordable fashion</strong> without compromising on style.
-    </div>
-
-    <div class="card">
-      Anyone who believes fashion is a way to <strong>express themselves boldly</strong> and beautifully.
-    </div>
-
-  </div>
-</section>
-
-
-<!--Featured-->
-<section class="products">
-    <h2>Featured Products</h2>
-    <div class="product-grid">
-        <div class="product-card">
-            <img src="{% static 'images/product1.jpg' %}" alt="Product 1">
-            <h3>Cute Pink Top</h3>
-            <p>₹499</p>
-           
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-2xl border border-zinc-200/90 bg-white/80 dark:border-zinc-700/70 dark:bg-zinc-900/50 p-6 shadow-md shadow-zinc-900/[0.04] ring-1 ring-black/[0.03] backdrop-blur-sm transition hover:border-rose-200/70 hover:shadow-lg lg:col-span-1">
+            <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">Girls who are <strong class="text-zinc-900 dark:text-zinc-100">exploring their fashion style</strong> and want trendy looks that reflect their personality.</p>
         </div>
-        <div class="product-card">
-            <img src="{% static 'images/product2.jpg' %}" alt="Product 2">
-            <h3>Summer Dress</h3>
-            <p>₹799</p>
-          
+        <div class="rounded-2xl border border-zinc-200/90 bg-white/80 dark:border-zinc-700/70 dark:bg-zinc-900/50 p-6 shadow-md shadow-zinc-900/[0.04] ring-1 ring-black/[0.03] backdrop-blur-sm transition hover:border-rose-200/70 hover:shadow-lg">
+            <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">College days need <strong class="text-zinc-900 dark:text-zinc-100">comfortable yet confident</strong> outfits for daily wear and special occasions.</p>
         </div>
-        <div class="product-card">
-    <img src="{% static 'images/product3.jpg' %}" alt="Floral Kurti">
-    <h3>Floral Kurti</h3>
-    <p>₹649</p>
-    
-</div>
-
-<div class="product-card">
-    <img src="{% static 'images/product4.jpg' %}" alt="Party Wear Dress">
-    <h3>Party Wear Dress</h3>
-    <p>₹1,299</p>
-   
-</div>
-
-<div class="product-card">
-    <img src="{% static 'images/product5.jpg' %}" alt="Co-ord Set">
-    <h3>Co-ord Set</h3>
-    <p>₹999</p>
- 
-</div>
-
-<div class="product-card">
-    <img src="{% static 'images/product6.jpg' %}" alt="Long Maxi Dress">
-    <h3>Long Maxi Dress</h3>
-    <p>₹1,199</p>
-    
-</div>
-
-<div class="product-card">
-    <img src="{% static 'images/product7.jpg' %}" alt="Denim Look">
-    <h3>Denim Look</h3>
-    <p>₹799</p>
-   
-</div>
-        <div class="product-card">
-            <img src="{% static 'images/product8.jpg' %}" alt="Anarkali Set">
-            <h3>Anarkali Set</h3>
-            <p>₹899</p>
-            
+        <div class="rounded-2xl border border-rose-100/90 bg-gradient-to-br from-rose-50/90 to-violet-50/80 p-6 shadow-lg shadow-rose-200/40 ring-1 ring-rose-200/60 backdrop-blur-sm dark:border-rose-900/50 dark:from-rose-950/35 dark:to-violet-950/30 dark:shadow-rose-950/20 dark:ring-rose-900/40 sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:flex lg:items-center">
+            <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">Fashion lovers who enjoy <strong class="text-rose-800 dark:text-rose-300">staying up-to-date</strong> with the latest styles and seasonal trends.</p>
         </div>
-
-        
+        <div class="rounded-2xl border border-zinc-200/90 bg-white/80 dark:border-zinc-700/70 dark:bg-zinc-900/50 p-6 shadow-md shadow-zinc-900/[0.04] ring-1 ring-black/[0.03] backdrop-blur-sm transition hover:border-rose-200/70 hover:shadow-lg sm:col-span-2 lg:col-span-2">
+            <div class="grid gap-6 sm:grid-cols-2">
+                <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">Budget-friendly picks with <strong class="text-zinc-900 dark:text-zinc-100">affordable fashion</strong> — no compromises on sparkle.</p>
+                <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">For everyone who wears their mood <strong class="text-zinc-900 dark:text-zinc-100">boldly and beautifully</strong>.</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!--Footer-->
-<footer>
-    <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+<section class="border-y border-zinc-200/80 bg-gradient-to-b from-white/90 via-zinc-50/50 to-white/90 py-16 backdrop-blur-sm dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 sm:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <h2 class="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Featured picks</h2>
+                <p class="mt-2 text-zinc-600 dark:text-zinc-400">Hand-picked staples — swipe-worthy on the gram.</p>
+            </div>
+            <a href="{% url 'products' %}" class="inline-flex items-center gap-1 text-sm font-semibold text-rose-600 transition hover:text-rose-500">See all<span aria-hidden="true">→</span></a>
+        </div>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product1.jpg' %}" alt="Cute Pink Top" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Cute Pink Top</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Cute Pink Top</h3><p class="mt-1 text-sm font-medium text-rose-600">₹499</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product2.jpg' %}" alt="Summer Dress" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Summer Dress</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Summer Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹799</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product3.jpg' %}" alt="Floral Kurti" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Floral Kurti</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Floral Kurti</h3><p class="mt-1 text-sm font-medium text-rose-600">₹649</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800"><img src="{% static 'images/product4.jpg' %}" alt="Party Wear Dress" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"></div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Party Wear Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,299</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35 sm:col-span-2 lg:col-span-2">
+                <div class="relative flex gap-4 p-4 sm:flex-row">
+                    <div class="relative h-44 w-full max-w-[10rem] flex-shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:h-52">
+                        <img src="{% static 'images/product5.jpg' %}" alt="Co-ord Set" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                        <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/25 to-transparent px-2 pb-2 pt-10">
+                            <p class="text-xs font-semibold leading-tight text-white drop-shadow-md">Co-ord Set</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 flex-col justify-center"><h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Co-ord Set</h3><p class="mt-1 text-base font-semibold text-rose-600">₹999</p><p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Twin sets — one cart add, infinite mirror selfies.</p></div>
+                </div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product6.jpg' %}" alt="Long Maxi Dress" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Long Maxi Dress</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Long Maxi Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,199</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product7.jpg' %}" alt="Denim Look" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Denim Look</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Denim Look</h3><p class="mt-1 text-sm font-medium text-rose-600">₹799</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product8.jpg' %}" alt="Anarkali Set" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Anarkali Set</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Anarkali Set</h3><p class="mt-1 text-sm font-medium text-rose-600">₹899</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product9.jpg' %}" alt="Pakistani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Pakistani Suit</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Pakistani Suit</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,299</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product10.jpg' %}" alt="Bandhani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Bandhani Suit</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Bandhani Suit</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,049</p></div>
+            </article>
+            <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
+                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product11.jpg' %}" alt="Farshi Salwar Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
+                        <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Farshi Salwar Suit</p>
+                    </div>
+                </div>
+                <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Farshi Salwar Suit</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,449</p></div>
+            </article>
+        </div>
     </div>
-    <p>&copy;  2025 GirlyCart | All rights reserved</p>
-</footer>
-
-</body>
-</html>
+</section>
+{% endblock %}

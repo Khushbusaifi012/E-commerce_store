@@ -1,74 +1,60 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All Products - GirlyCart</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo-container">
-    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-  </div>
-
-  <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'products' %}">Products</a></li>
-    <li><a href="{% url 'cart' %}">Cart</a></li>
-
-    <!-- Profile dropdown -->
-    <li class="profile-dropdown">
-      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-          <li>
-            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-              {% csrf_token %}
-              <button type="submit" class="logout-btn">Logout</button>
-            </form>
-          </li>
-        {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Signup</a></li>
-        {% endif %}
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-<!--Product-->
-<section class="products">
-    <h2>Our Collection</h2>
-    <div class="product-grid">
-      {% for product in products %}
-    <div class="product-card">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="200">
-        <h3>{{ product.name }}</h3>
-        <p>₹{{ product.price }}</p>
-        <a href="{% url 'add_to_cart' product.id %}" class="btn-cart">Add to Cart</a>
-    </div>
-{% endfor %}
-
+{% block title %}Products{% endblock %}
+{% block content %}
+<section class="relative overflow-hidden border-b border-zinc-200/80 bg-gradient-to-br from-white via-rose-50/40 to-violet-50/50 dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+    <div class="pointer-events-none absolute -right-32 top-0 size-72 rounded-full bg-rose-300/25 blur-3xl motion-reduce:blur-none dark:bg-rose-500/10" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-rose-600/90 dark:text-rose-400/90">Catalogue</p>
+        <h1 class="font-display mt-2 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">Our collection</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">Scroll-worthy fits — add favourites to your cart in one tap.</p>
     </div>
 </section>
 
-<!--Footer-->
-<footer>
-    <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+<section class="mx-auto max-w-6xl px-4 pb-28 pt-12 sm:px-6 md:pb-14 lg:px-8 lg:py-14">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {% for product in products %}
+        <article class="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/50 hover:shadow-[0_28px_60px_-18px_rgba(244,63,94,0.15)] motion-reduce:transform-none dark:border-zinc-700/80 dark:bg-zinc-900/70 dark:ring-white/5 dark:hover:border-rose-500/35">
+            <div class="relative aspect-square overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="480" height="480" loading="lazy" decoding="async" class="relative z-[1] h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" onload="var s=this.nextElementSibling;if(s&amp;&amp;s.hasAttribute('data-skeleton'))s.classList.add('hidden');" onerror="var s=this.nextElementSibling;if(s&amp;&amp;s.hasAttribute('data-skeleton'))s.classList.add('hidden');">
+                <div data-skeleton class="absolute inset-0 z-[2] animate-pulse bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 motion-reduce:animate-none" aria-hidden="true"></div>
+                <span class="pointer-events-none absolute right-3 top-3 z-[3] rounded-full border border-white/50 bg-white/90 px-2.5 py-1 text-xs font-semibold text-zinc-800 shadow-sm backdrop-blur dark:border-zinc-600 dark:bg-zinc-900/85 dark:text-zinc-100">New in</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">{{ product.name }}</h3>
+                <p class="mt-1 text-base font-semibold text-rose-600 dark:text-rose-400">₹{{ product.price }}</p>
+                <div class="mt-4 mt-auto pt-2">
+                    <a href="{% url 'add_to_cart' product.id %}" class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-zinc-900 to-zinc-800 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-900/25 transition-[transform,filter] hover:from-zinc-800 hover:to-zinc-700 hover:shadow-xl active:scale-[0.98] motion-reduce:active:scale-100 dark:from-zinc-100 dark:to-zinc-200 dark:text-zinc-900 dark:shadow-none dark:hover:from-white dark:hover:to-zinc-100">Add to cart</a>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <p class="col-span-full rounded-3xl border border-dashed border-zinc-300 bg-zinc-50 py-16 text-center text-zinc-500 dark:border-zinc-600 dark:bg-zinc-900/50 dark:text-zinc-400">No products yet. Check back soon!</p>
+        {% endfor %}
     </div>
-    <p>&copy;  2025 GirlyCart | All rights reserved</p>
-</footer>
+</section>
 
-</body>
-</html>
-
-</body>
-</html>
+<div class="fixed inset-x-0 bottom-0 z-[85] flex border-t border-zinc-200/90 bg-white/90 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/80 dark:border-zinc-700 dark:bg-zinc-950/95 dark:supports-[backdrop-filter]:bg-zinc-950/90 md:hidden" role="region" aria-label="Quick cart">
+    {% if user.is_authenticated %}
+    <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
+        <div class="min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Shop &amp; checkout</p>
+            <p class="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                {% if cart_quantity_total %}{{ cart_quantity_total }} pcs · {{ cart_item_count }} line{% if cart_item_count != 1 %}s{% endif %}
+                {% else %}Bag empty — tap Add to cart↑{% endif %}
+            </p>
+            <p class="mt-0.5 text-[11px] leading-snug text-zinc-500 dark:text-zinc-500">Use <span class="font-semibold text-zinc-700 dark:text-zinc-300">Add to cart</span> on cards, then open cart.</p>
+        </div>
+        <a href="{% url 'cart' %}" class="inline-flex shrink-0 items-center rounded-full bg-gradient-to-r from-rose-600 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/30 active:scale-[0.98]">View cart →</a>
+    </div>
+    {% else %}
+    <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
+        <div class="min-w-0">
+            <p class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Add to cart from the list above.</p>
+            <p class="mt-0.5 text-sm text-zinc-600 dark:text-zinc-400">Log in to save your bag.</p>
+        </div>
+        <a href="{% url 'login' %}?next={{ request.path|urlencode }}" class="inline-flex shrink-0 rounded-full border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100">Log in</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

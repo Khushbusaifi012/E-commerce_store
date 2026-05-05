@@ -1,77 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up - GirlyCart</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-
-<!-- Custom messages -->
-{% if messages %}
-  <div class="custom-message-wrapper">
-    {% for message in messages %}
-      <div class="custom-alert {{ message.tags }}">
-        <span class="custom-icon">
-          {% if "error" in message.tags %} ❌
-          {% elif "success" in message.tags %} ✔
-          {% elif "info" in message.tags %} ℹ️
-          {% else %} ✔
-          {% endif %}
-        </span>
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-  
-
-<!--Navbar-->
-<nav class="navbar">
-        <div class="logo-container">
-            <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-        </div>
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'products' %}">Products</a></li>
-            <li><a href="{% url 'cart' %}">Cart</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>  
-        </ul>
-    </div>
-</nav>
-
-<div class="signup-container">
-    <div class="signup-box">
-        <h2>Create Account</h2>
-        <p class="center-text">Enter your details to create an account!</p>
-        
-        {% if messages %}
-            {% for message in messages %}
-                <p style="color: red;">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-
-        <form method="POST">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+<div class="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-4 py-16 sm:px-6">
+    <div class="pointer-events-none absolute -left-24 top-1/3 size-64 rounded-full bg-violet-400/25 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -right-16 top-1/2 size-52 rounded-full bg-rose-400/30 blur-3xl motion-reduce:blur-none" aria-hidden="true"></div>
+    <div class="relative w-full max-w-md rounded-3xl border border-zinc-200/80 bg-white/90 p-8 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-md sm:p-10">
+        <h1 class="font-display text-2xl font-bold tracking-tight text-zinc-900">Create account</h1>
+        <p class="mt-2 text-sm text-zinc-600">Join GirlyCart in under a minute.</p>
+        <form method="post" class="mt-8 space-y-4">
             {% csrf_token %}
-        
-            <input type="text" name="username" placeholder="Username" required />
-            <input type="email" name="email" placeholder="Email" required />
-          <input type="password" name="password1" placeholder="Password" required autocomplete="new-password" />
-<input type="password" name="password2" placeholder="Confirm Password" required autocomplete="new-password" />
-            <button type="submit">Sign Up</button>
+            <div>
+                <label for="username" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Username</label>
+                <input id="username" type="text" name="username" required class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900">
+            </div>
+            <div>
+                <label for="email" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Email</label>
+                <input id="email" type="email" name="email" required autocomplete="email" class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900">
+            </div>
+            <div>
+                <label for="password1" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Password</label>
+                <input id="password1" type="password" name="password1" required autocomplete="new-password" class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900">
+            </div>
+            <div>
+                <label for="password2" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Confirm password</label>
+                <input id="password2" type="password" name="password2" required autocomplete="new-password" class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900">
+            </div>
+            <button type="submit" class="w-full rounded-full bg-gradient-to-r from-rose-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/30 transition-[transform,box-shadow] hover:from-rose-500 hover:to-violet-500 hover:shadow-rose-500/40 active:scale-[0.98] motion-reduce:active:scale-100">Sign up</button>
         </form>
-
-        <p class="center-text">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+        <p class="mt-8 text-center text-sm text-zinc-600 dark:text-zinc-400">Already have an account? <a href="{% url 'login' %}" class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">Log in</a></p>
     </div>
 </div>
-
-<!--Footer-->
-<footer>
-    <p>&copy; 2025 GirlyCart | All rights reserved </p>
-</footer>
-
-</body>
-</html>
+{% endblock %}

@@ -1,239 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Checkout - GirlyCart</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    body {
-      background: url("{% static 'images/bg2.jpg' %}") no-repeat center center fixed;
-      font-family: 'Segoe UI', sans-serif;
-    
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      background-color: #ffffff;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .logo-img {
-      height: 100px;
-    }
-
-    .checkout-container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      color: #ec407a;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .form-section {
-      background-color: #fff8fc;
-      background: url("{% static 'images/bg2.jpg' %}") no-repeat center center fixed;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #f8bbd0;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #880e4f;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ec407a;
-    }
-
-    .summary {
-      background-color: #fce4ec;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #f8bbd0;
-    }
-
-    .summary h3 {
-      margin-bottom: 10px;
-      color: #d81b60;
-    }
-
-    .checkout-btn {
-      margin-top: 20px;
-      display: block;
-      padding: 12px;
-      background-color: #ec407a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .checkout-btn:hover {
-      background-color: #d81b60;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: white;
-      color: black;
-    }
-
-    @media (max-width: 768px) {
-      form {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<div class="wrapper">
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo-container">
-    <img src="{% static 'images/logo.jpg' %}" alt="GirlyCart Logo" class="logo-img">
-  </div>
-
-  <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'products' %}">Products</a></li>
-    <li><a href="{% url 'cart' %}">Cart</a></li>
-
-<!-- Profile dropdown -->
-    <li class="profile-dropdown">
-      <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon" />
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-          <li>
-            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-              {% csrf_token %}
-              <button type="submit" class="logout-btn">Logout</button>
-            </form>
-          </li>
-        {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Signup</a></li>
-        {% endif %}
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-
-<!--Checkout Form-->
-  <div class="checkout-container">
-    <h2>Checkout</h2>
-<form method="post" action="{% url 'checkout' %}">
-
-      {% csrf_token %}
-
-<!-- Delivery Address -->
-      <div class="form-section">
-        <h3>Delivery Address</h3>
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required>
-
-        <label for="address">Street Address</label>
-        <input type="text" id="address" name="address" required>
-
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" required>
-
-        <label for="zipcode">ZIP Code</label>
-        <input type="text" id="zipcode" name="zipcode" required>
-
-        <label for="phone">Phone Number</label>
-        <input type="text" id="phone" name="phone" required>
-      </div>
-
-<!-- Billing Info + Summary -->
-      <div class="form-section">
-        <h3>Billing Information</h3>
-        <label for="cardnumber">Card Number</label>
-        <input type="text" id="cardnumber" name="cardnumber" placeholder="1234 5678 9012 3456" required>
-
-        <label for="expiry">Expiry Date</label>
-        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
-
-        <label for="cvv">CVV</label>
-        <input type="text" id="cvv" name="cvv" required>
-
-       <div class="summary">
-  <h3>Order Summary</h3>
-  <p>Items Total: ₹{{ total }}</p>
-  <p>Shipping: ₹{{ shipping }}</p>
-  <hr>
-  <p><strong>Grand Total: ₹{{ grand_total }}</strong></p>
-</div>
-
-        <button class="checkout-btn">Place Order</button>
-      </div>
-    </form>
-  </div>
-
-</div>
-
-<!--Footer-->
-<footer>
-    <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<section class="relative border-b border-zinc-200 bg-gradient-to-br from-violet-50 via-white to-rose-50 dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+    <div class="pointer-events-none absolute inset-0 opacity-[0.15] dark:opacity-[0.08]" style="background-image:url('{% static 'images/bg2.jpg' %}');background-size:cover;background-position:center"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <h1 class="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Checkout</h1>
+        <p class="mt-2 max-w-xl text-zinc-600 dark:text-zinc-400">Tell us where to send your order and confirm payment — quick, secure, and straightforward.</p>
     </div>
-    <p>&copy;  2025 GirlyCart | All rights reserved</p>
-</footer>
+</section>
 
-</body>
-</html>
+<section class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
+    <form method="post" action="{% url 'checkout' %}" class="grid gap-8 lg:grid-cols-2">
+        {% csrf_token %}
+        <fieldset class="space-y-4 rounded-3xl border border-zinc-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.04] backdrop-blur-sm dark:border-zinc-700/80 dark:bg-zinc-900/80 dark:ring-white/5 sm:p-8">
+            <legend class="px-1 text-lg font-semibold text-zinc-900 dark:text-zinc-50">Delivery</legend>
+            <div>
+                <label for="fullname" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Full name</label>
+                <input id="fullname" type="text" name="fullname" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+            </div>
+            <div>
+                <label for="address" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Street</label>
+                <input id="address" type="text" name="address" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <label for="city" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">City</label>
+                    <input id="city" type="text" name="city" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+                </div>
+                <div>
+                    <label for="zipcode" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">ZIP</label>
+                    <input id="zipcode" type="text" name="zipcode" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+                </div>
+            </div>
+            <div>
+                <label for="phone" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Phone</label>
+                <input id="phone" type="text" name="phone" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+            </div>
+        </fieldset>
+
+        <div class="space-y-6">
+            <fieldset class="space-y-4 rounded-3xl border border-zinc-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.04] backdrop-blur-sm dark:border-zinc-700/80 dark:bg-zinc-900/80 dark:ring-white/5 sm:p-8">
+                <legend class="px-1 text-lg font-semibold text-zinc-900 dark:text-zinc-50">Payment</legend>
+                <div>
+                    <label for="cardnumber" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Card number</label>
+                    <input id="cardnumber" type="text" name="cardnumber" placeholder="•••• •••• •••• ••••" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="expiry" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Expiry</label>
+                        <input id="expiry" type="text" name="expiry" placeholder="MM/YY" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+                    </div>
+                    <div>
+                        <label for="cvv" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">CVV</label>
+                        <input id="cvv" type="text" name="cvv" required class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/30 focus:border-rose-400 focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/60 dark:text-zinc-100 dark:focus:border-rose-500 dark:focus:bg-zinc-900">
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="rounded-3xl border border-rose-100/90 bg-gradient-to-br from-rose-50/90 to-white p-6 shadow-lg shadow-rose-200/30 ring-1 ring-rose-100 dark:border-rose-900/50 dark:from-rose-950/40 dark:to-zinc-900 dark:shadow-rose-950/20 dark:ring-rose-900/40">
+                <h3 class="text-sm font-bold uppercase tracking-wide text-rose-800 dark:text-rose-300">Summary</h3>
+                <div class="mt-4 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+                    <div class="flex justify-between"><span>Items</span><span class="font-medium">₹{{ total }}</span></div>
+                    <div class="flex justify-between"><span>Shipping</span><span class="font-medium">₹{{ shipping }}</span></div>
+                    <hr class="border-rose-100 dark:border-rose-900/50">
+                    <div class="flex justify-between text-base font-bold text-zinc-900 dark:text-zinc-50"><span>Total</span><span>₹{{ grand_total }}</span></div>
+                </div>
+                <button type="submit" class="mt-6 w-full rounded-full bg-gradient-to-r from-zinc-900 to-zinc-800 py-4 text-sm font-semibold text-white shadow-lg shadow-zinc-900/25 transition-[transform] hover:from-zinc-800 hover:to-zinc-700 active:scale-[0.99] motion-reduce:active:scale-100 dark:from-zinc-100 dark:to-zinc-200 dark:text-zinc-900 dark:shadow-none dark:hover:from-white dark:hover:to-zinc-100">Place order</button>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}
