@@ -43,3 +43,5 @@ Thumbs.db
 *.swo
 .idea/
 .vscode/
+
+girlstore/.env.example
