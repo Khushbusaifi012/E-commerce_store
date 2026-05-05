@@ -5,9 +5,41 @@ myvenv/
 ENV/
 env/
 
-# Other common ignores
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+
+# Django — local uploads & collected static (adjust if you commit placeholders)
+media/
+staticfiles/
+
+# Local / secrets
 *.log
 *.sqlite3
 .env
+.env.*
+!.env.example
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Node (if you add a frontend toolchain)
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
