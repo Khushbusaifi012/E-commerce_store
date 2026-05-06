@@ -94,12 +94,16 @@ WSGI_APPLICATION = 'girlstore.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # If DATABASE_URL is set → Postgres (e.g. Render's managed DB). If unset → MySQL below (your setup).
-if os.getenv('DATABASE_URL'):
+_db_url = os.getenv('DATABASE_URL')
+if _db_url:
+    # ssl_require only for Postgres — SQLite URLs would get invalid "sslmode" in OPTIONS otherwise.
+    _postgres = _db_url.startswith(('postgres://', 'postgresql://'))
+    _ssl = _postgres and os.getenv('DATABASE_SSL_REQUIRE', 'true').lower() in ('1', 'true', 'yes')
     DATABASES = {
         'default': dj_database_url.config(
             conn_max_age=600,
             conn_health_checks=True,
-            ssl_require=os.getenv('DATABASE_SSL_REQUIRE', 'true').lower() in ('1', 'true', 'yes'),
+            ssl_require=_ssl,
         )
     }
 else:
