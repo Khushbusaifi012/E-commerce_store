@@ -30,7 +30,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
     raise ImproperlyConfigured('Set SECRET_KEY in .env or your environment')
 
-DEBUG = os.getenv('DEBUG', 'False').lower() in ('1', 'true', 'yes')
+# Local dev: DEBUG defaults True. On Render, defaults False unless DEBUG env overrides.
+_default_debug = 'False' if os.getenv('RENDER') == 'true' else 'True'
+DEBUG = os.getenv('DEBUG', _default_debug).lower() in ('1', 'true', 'yes')
 
 ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()]
 CSRF_TRUSTED_ORIGINS = [x.strip() for x in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if x.strip()]
