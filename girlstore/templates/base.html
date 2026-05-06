@@ -105,30 +105,28 @@
             {% endif %}
         </nav>
 
-        <!-- Mobile -->
-        <details class="relative md:hidden">
-            <summary class="list-none [&::-webkit-details-marker]:hidden">
-                <span class="flex cursor-pointer items-center justify-center rounded-xl border border-zinc-200/80 bg-white/90 p-2.5 shadow-sm shadow-zinc-900/5 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900/90 dark:hover:bg-zinc-800" aria-label="Open menu">
-                    <svg class="size-5 text-zinc-700 dark:text-zinc-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </span>
-            </summary>
-            <nav class="absolute right-0 z-50 mt-2 min-w-[12rem] overflow-hidden rounded-2xl border border-zinc-100/90 bg-white/95 py-2 shadow-xl shadow-zinc-900/10 ring-1 ring-black/[0.04] backdrop-blur-lg dark:border-zinc-700 dark:bg-zinc-900/96 dark:ring-black/40" aria-label="Mobile menu">
-                <a href="{% url 'home' %}" class="block px-4 py-3 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800">Home</a>
-                <a href="{% url 'about' %}" class="block px-4 py-3 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800">About</a>
-                <a href="{% url 'products' %}" class="block px-4 py-3 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800">Products</a>
-                <a href="{% url 'cart' %}" class="block px-4 py-3 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800">Cart</a>
+        <!-- Mobile menu (button toggled — avoids <details> painting bugs on some phones) -->
+        <div class="relative shrink-0 md:hidden">
+            <button type="button" id="mobile-nav-toggle" class="flex items-center justify-center rounded-xl border border-zinc-200/80 bg-white/90 p-2.5 shadow-sm shadow-zinc-900/5 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900/90 dark:hover:bg-zinc-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-panel">
+                <svg class="size-5 text-zinc-700 dark:text-zinc-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <nav id="mobile-nav-panel" class="absolute right-0 top-full z-[110] mt-2 hidden w-[min(18rem,calc(100vw-2rem))] max-h-[min(70vh,calc(100dvh-5rem))] shrink-0 overflow-x-hidden overflow-y-auto rounded-2xl border border-zinc-100/90 bg-white py-2 text-zinc-900 shadow-xl shadow-zinc-900/10 ring-1 ring-black/[0.04] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:ring-black/40" aria-label="Mobile menu" hidden>
+                <a href="{% url 'home' %}" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-zinc-800">Home</a>
+                <a href="{% url 'about' %}" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-zinc-800">About</a>
+                <a href="{% url 'products' %}" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-zinc-800">Products</a>
+                <a href="{% url 'cart' %}" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-zinc-800">Cart</a>
                 <hr class="my-2 border-zinc-100 dark:border-zinc-700">
                 {% if user.is_authenticated %}
                     <form action="{% url 'logout' %}" method="post" class="px-2 pb-2">
                         {% csrf_token %}
-                        <button type="submit" class="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/40 dark:hover:text-rose-300">Logout</button>
+                        <button type="submit" class="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold text-zinc-900 hover:bg-rose-50 hover:text-rose-700 dark:text-zinc-100 dark:hover:bg-rose-950/40 dark:hover:text-rose-300">Logout</button>
                     </form>
                 {% else %}
-                    <a href="{% url 'login' %}" class="block px-4 py-3 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800">Log in</a>
-                    <a href="{% url 'signup' %}" class="mx-2 mb-2 block rounded-xl bg-gradient-to-r from-rose-600 to-violet-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:from-rose-500 hover:to-violet-500">Sign up</a>
+                    <a href="{% url 'login' %}" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-zinc-800">Log in</a>
+                    <a href="{% url 'signup' %}" class="mobile-nav-link mx-2 mb-2 block rounded-xl bg-gradient-to-r from-rose-600 to-violet-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:from-rose-500 hover:to-violet-500">Sign up</a>
                 {% endif %}
             </nav>
-        </details>
+        </div>
         </div>
     </div>
 </header>
@@ -165,6 +163,52 @@ document.getElementById('theme-toggle')?.addEventListener('click', function () {
   document.documentElement.classList.toggle('dark');
   localStorage.setItem('gc-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
 });
+
+(function () {
+  var toggle = document.getElementById('mobile-nav-toggle');
+  var panel = document.getElementById('mobile-nav-panel');
+  if (!toggle || !panel) return;
+
+  function setOpen(open) {
+    if (open) {
+      panel.removeAttribute('hidden');
+      panel.classList.remove('hidden');
+      panel.style.removeProperty('display');
+    } else {
+      panel.setAttribute('hidden', '');
+      panel.classList.add('hidden');
+      panel.style.display = 'none';
+    }
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(panel.hidden);
+  });
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!(t instanceof Node)) return;
+    if (toggle.contains(t) || panel.contains(t)) return;
+    if (!panel.hidden) setOpen(false);
+  }, true);
+
+  panel.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) setOpen(false);
+  });
+
+  panel.querySelectorAll('.mobile-nav-link').forEach(function (a) {
+    a.addEventListener('click', function () {
+      setOpen(false);
+    });
+  });
+})();
 </script>
 {% block scripts %}{% endblock %}
 </body>
