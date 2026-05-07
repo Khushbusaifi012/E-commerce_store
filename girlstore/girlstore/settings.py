@@ -107,6 +107,8 @@ elif os.getenv('RENDER') == 'true':
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
+            # Reduce "database is locked" with multiple gunicorn workers (use --workers 1 too).
+            'OPTIONS': {'timeout': 20},
         }
     }
 else:

@@ -25,7 +25,11 @@
             <li class="flex flex-col gap-4 p-6 md:grid md:grid-cols-[1fr_8rem_8rem_6rem_6rem] md:items-center md:gap-4">
                 <div class="flex gap-4">
                     <div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 md:h-20 md:w-20">
+                        {% if item.product.image %}
                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="h-full w-full object-cover">
+                        {% else %}
+                        <img src="{% static 'images/logo.jpg' %}" alt="{{ item.product.name }}" class="h-full w-full object-contain p-2 opacity-90 dark:opacity-80">
+                        {% endif %}
                     </div>
                     <div class="flex flex-col justify-center">
                         <p class="font-semibold text-zinc-900 dark:text-zinc-100">{{ item.product.name }}</p>

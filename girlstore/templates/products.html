@@ -16,7 +16,11 @@
         {% for product in products %}
         <article class="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/50 hover:shadow-[0_28px_60px_-18px_rgba(244,63,94,0.15)] motion-reduce:transform-none dark:border-zinc-700/80 dark:bg-zinc-900/70 dark:ring-white/5 dark:hover:border-rose-500/35">
             <div class="relative aspect-square overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                {% if product.image %}
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" width="480" height="480" loading="lazy" decoding="async" class="relative z-[1] h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" onload="var s=this.nextElementSibling;if(s&amp;&amp;s.hasAttribute('data-skeleton'))s.classList.add('hidden');" onerror="var s=this.nextElementSibling;if(s&amp;&amp;s.hasAttribute('data-skeleton'))s.classList.add('hidden');">
+                {% else %}
+                <img src="{% static 'images/logo.jpg' %}" alt="{{ product.name }}" width="480" height="480" loading="lazy" decoding="async" class="relative z-[1] h-full w-full object-contain p-8 opacity-90 transition duration-500 group-hover:scale-[1.04] dark:opacity-80" onload="var s=this.nextElementSibling;if(s&amp;&amp;s.hasAttribute('data-skeleton'))s.classList.add('hidden');">
+                {% endif %}
                 <div data-skeleton class="absolute inset-0 z-[2] animate-pulse bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 motion-reduce:animate-none" aria-hidden="true"></div>
                 <span class="pointer-events-none absolute right-3 top-3 z-[3] rounded-full border border-white/50 bg-white/90 px-2.5 py-1 text-xs font-semibold text-zinc-800 shadow-sm backdrop-blur dark:border-zinc-600 dark:bg-zinc-900/85 dark:text-zinc-100">New in</span>
             </div>

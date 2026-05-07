@@ -67,7 +67,7 @@ def products(request):
     cart_item_count = 0
     cart_quantity_total = 0
     if request.user.is_authenticated:
-        items = CartItem.objects.filter(user=request.user)
+        items = CartItem.objects.filter(user=request.user).select_related('product')
         cart_item_count = items.count()
         cart_quantity_total = sum(item.quantity for item in items)
     return render(request, 'products.html', {
