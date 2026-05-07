@@ -8,3 +8,4 @@ packaging==25.0
 sqlparse==0.5.3
 whitenoise==6.9.0
 tzdata==2025.2
+Pillow==11.3.0

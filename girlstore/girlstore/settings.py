@@ -163,6 +163,32 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+if os.getenv('RENDER') == 'true':
+    # Behind Render’s TLS-terminating proxy — fixes is_secure() / CSRF / redirects.
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    Path(STATIC_ROOT).mkdir(parents=True, exist_ok=True)
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'std': {'format': '%(levelname)s %(asctime)s %(name)s %(message)s'},
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'std',
+            },
+        },
+        'root': {'handlers': ['console'], 'level': 'INFO'},
+        'loggers': {
+            'django.request': {
+                'handlers': ['console'],
+                'level': 'ERROR',
+                'propagate': False,
+            },
+        },
+    }
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
