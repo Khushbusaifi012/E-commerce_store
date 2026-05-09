@@ -153,6 +153,7 @@ if os.getenv('RENDER') == 'true':
     # Behind Render’s TLS-terminating proxy — fixes is_secure() / CSRF / redirects.
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     Path(STATIC_ROOT).mkdir(parents=True, exist_ok=True)
+    Path(MEDIA_ROOT).mkdir(parents=True, exist_ok=True)
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
