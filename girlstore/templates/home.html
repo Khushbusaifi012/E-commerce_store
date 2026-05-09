@@ -56,7 +56,7 @@
 </section>
 
 <section class="border-y border-zinc-200/80 bg-gradient-to-b from-white/90 via-zinc-50/50 to-white/90 py-16 backdrop-blur-sm dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 sm:py-20">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <h2 class="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Featured picks</h2>
@@ -66,8 +66,8 @@
         </div>
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product1.jpg' %}" alt="Cute Pink Top" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product1.jpg' %}" alt="Cute Pink Top" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Cute Pink Top</p>
                     </div>
@@ -75,8 +75,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Cute Pink Top</h3><p class="mt-1 text-sm font-medium text-rose-600">₹499</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product2.jpg' %}" alt="Summer Dress" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product2.jpg' %}" alt="Summer Dress" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Summer Dress</p>
                     </div>
@@ -84,8 +84,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Summer Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹799</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product3.jpg' %}" alt="Floral Kurti" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product3.jpg' %}" alt="Floral Kurti" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Floral Kurti</p>
                     </div>
@@ -93,13 +93,15 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Floral Kurti</h3><p class="mt-1 text-sm font-medium text-rose-600">₹649</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800"><img src="{% static 'images/product4.jpg' %}" alt="Party Wear Dress" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"></div>
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product4.jpg' %}" alt="Party Wear Dress" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
+                </div>
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Party Wear Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,299</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35 sm:col-span-2 lg:col-span-2">
                 <div class="relative flex gap-4 p-4 sm:flex-row">
                     <div class="relative h-44 w-full max-w-[10rem] flex-shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:h-52">
-                        <img src="{% static 'images/product5.jpg' %}" alt="Co-ord Set" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                        <img src="{% static 'images/product5.jpg' %}" alt="Co-ord Set" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                         <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/25 to-transparent px-2 pb-2 pt-10">
                             <p class="text-xs font-semibold leading-tight text-white drop-shadow-md">Co-ord Set</p>
                         </div>
@@ -108,8 +110,8 @@
                 </div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product6.jpg' %}" alt="Long Maxi Dress" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product6.jpg' %}" alt="Long Maxi Dress" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Long Maxi Dress</p>
                     </div>
@@ -117,8 +119,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Long Maxi Dress</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,199</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product7.jpg' %}" alt="Denim Look" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product7.jpg' %}" alt="Denim Look" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Denim Look</p>
                     </div>
@@ -126,8 +128,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Denim Look</h3><p class="mt-1 text-sm font-medium text-rose-600">₹799</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                    <img src="{% static 'images/product8.jpg' %}" alt="Anarkali Set" class="relative z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <img src="{% static 'images/product8.jpg' %}" alt="Anarkali Set" class="relative z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Anarkali Set</p>
                     </div>
@@ -135,8 +137,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Anarkali Set</h3><p class="mt-1 text-sm font-medium text-rose-600">₹899</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
-                    <img src="{% static 'images/product9.jpg' %}" alt="Pakistani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product9.jpg' %}" alt="Pakistani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Pakistani Suit</p>
                     </div>
@@ -144,8 +146,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Pakistani Suit</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,299</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
-                    <img src="{% static 'images/product10.jpg' %}" alt="Bandhani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product10.jpg' %}" alt="Bandhani Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Bandhani Suit</p>
                     </div>
@@ -153,8 +155,8 @@
                 <div class="p-4"><h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Bandhani Suit</h3><p class="mt-1 text-sm font-medium text-rose-600">₹1,049</p></div>
             </article>
             <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/75 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.04] backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-rose-200/60 hover:shadow-[0_28px_60px_-20px_rgba(244,63,94,0.18)] motion-reduce:transform-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:ring-white/5 dark:hover:border-rose-500/35">
-                <div class="relative aspect-[4/5] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
-                    <img src="{% static 'images/product11.jpg' %}" alt="Farshi Salwar Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                <div class="relative aspect-[3/4] min-h-[14rem] w-full overflow-hidden bg-zinc-100 sm:min-h-[16rem]">
+                    <img src="{% static 'images/product11.jpg' %}" alt="Farshi Salwar Suit" width="560" height="700" decoding="async" class="absolute inset-0 z-0 h-full w-full object-contain object-center transition duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100">
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 pb-3 pt-12">
                         <p class="text-sm font-semibold tracking-tight text-white drop-shadow-md">Farshi Salwar Suit</p>
                     </div>
