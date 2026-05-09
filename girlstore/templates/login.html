@@ -13,10 +13,18 @@
             {% if request.GET.next %}
             <input type="hidden" name="next" value="{{ request.GET.next }}">
             {% endif %}
-            <div>
-                <label for="username" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Username</label>
-                <input id="username" type="text" name="username" autocomplete="username" required class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition placeholder:text-zinc-400 focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900" placeholder="you@example">
+            {% if form.non_field_errors %}
+            <div class="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/80 dark:text-red-200" role="alert">
+                {% for err in form.non_field_errors %}<p>{{ err }}</p>{% endfor %}
             </div>
+            {% endif %}
+            <div>
+                <label for="username" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Username or email</label>
+                <input id="username" type="text" name="username" autocomplete="username" required class="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 outline-none ring-rose-400/40 transition placeholder:text-zinc-400 focus:border-rose-300 focus:bg-white focus:ring-4 dark:border-zinc-600 dark:bg-zinc-950/50 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-rose-500/50 dark:focus:bg-zinc-900" placeholder="username or you@example.com">
+            </div>
+            {% if form.username.errors %}
+            <p class="text-sm text-red-600 dark:text-red-400">{{ form.username.errors.0 }}</p>
+            {% endif %}
             <div>
                 <label for="password" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Password</label>
                 <div class="relative">
@@ -27,8 +35,8 @@
                     </button>
                 </div>
             </div>
-            {% if error %}
-            <p class="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/80 dark:text-red-200">{{ error }}</p>
+            {% if form.password.errors %}
+            <p class="text-sm text-red-600 dark:text-red-400">{{ form.password.errors.0 }}</p>
             {% endif %}
             <button type="submit" class="w-full rounded-full bg-gradient-to-r from-rose-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/30 transition-[transform,box-shadow] hover:from-rose-500 hover:to-violet-500 hover:shadow-rose-500/40 active:scale-[0.98] motion-reduce:active:scale-100">Log in</button>
             <div class="text-center">

@@ -45,6 +45,16 @@ if os.getenv('RENDER') == 'true':
     if origin and origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(origin)
 
+# Local runserver: if .env sets DEBUG=False or leaves hosts empty, you can get DisallowedHost / CSRF failures
+if DEBUG and os.getenv('RENDER') != 'true':
+    if not ALLOWED_HOSTS:
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+    if not CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS = [
+            'http://localhost:8000',
+            'http://127.0.0.1:8000',
+        ]
+
 
 # Application definition
 

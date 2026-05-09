@@ -1,12 +1,10 @@
 from django.utils.http import url_has_allowed_host_and_scheme
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, EmailOrUsernameAuthenticationForm
 from .models import CartItem, Order, OrderItem, Product
 
 # Create your views here.
@@ -18,14 +16,13 @@ def about(request):
 
 #signup view
 def signup_view(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Account created successfully. Please log in.")
-            return render(request, 'login.html', {'form': AuthenticationForm()})
-        else:
-            messages.error(request, "Something went wrong. Please try again.")
+            messages.success(request, 'Account created successfully. Please log in.')
+            return render(request, 'login.html', {'form': EmailOrUsernameAuthenticationForm(request)})
+        messages.error(request, 'Please fix the errors below.')
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -33,12 +30,12 @@ def signup_view(request):
 
 # LOGIN VIEW
 def login_view(request):
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+    if request.method == 'POST':
+        form = EmailOrUsernameAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, "Login successfully.")
+            messages.success(request, 'Login successfully.')
             next_url = (request.POST.get('next') or '').strip()
             if next_url and url_has_allowed_host_and_scheme(
                 next_url,
@@ -47,11 +44,9 @@ def login_view(request):
             ):
                 return redirect(next_url)
             return redirect('home')
-        else:
-            messages.error(request, "Invalid username or password.")
-            return render(request, 'login.html', {'form': form})
-    else:
-        form = AuthenticationForm()
+        messages.error(request, 'Invalid username or password.')
+        return render(request, 'login.html', {'form': form})
+    form = EmailOrUsernameAuthenticationForm(request)
     return render(request, 'login.html', {'form': form})
 
 
