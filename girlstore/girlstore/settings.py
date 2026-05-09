@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
-import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
@@ -90,19 +89,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'girlstore.wsgi.application'
 
 
-# PostgreSQL everywhere: set DATABASE_URL in .env locally; Render injects it from a Postgres add-on.
-_database_url = os.getenv('DATABASE_URL')
-if not _database_url:
-    raise ImproperlyConfigured(
-        'Set DATABASE_URL to a PostgreSQL URL, e.g. '
-        'postgres://USER:PASSWORD@localhost:5432/girlstore'
-    )
+# SQLite — local and Render (no Postgres driver; Render free tier friendly).
+# Note: on Render the DB file lives on ephemeral disk; data can reset on redeploy.
 DATABASES = {
-    'default': dj_database_url.config(
-        default=_database_url,
-        conn_max_age=600,
-        ssl_require=os.getenv('RENDER') == 'true',
-    ),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {'timeout': 20},
+    }
 }
 
 # Password validation
