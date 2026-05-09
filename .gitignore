@@ -25,7 +25,8 @@ staticfiles/
 *.sqlite3
 .env
 .env.*
-!.env.example
+girlstore/.env.example
+.env.example
 
 # Testing / coverage
 .pytest_cache/
