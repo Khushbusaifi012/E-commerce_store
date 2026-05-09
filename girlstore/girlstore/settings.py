@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
-import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
@@ -90,24 +89,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'girlstore.wsgi.application'
 
 
-_db_url = os.getenv('DATABASE_URL')
-if _db_url:
-    _postgres = _db_url.startswith(('postgres://', 'postgresql://'))
-    _ssl = _postgres and os.getenv('DATABASE_SSL_REQUIRE', 'true').lower() in ('1', 'true', 'yes')
-    DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=_ssl,
-        )
-    }
-elif os.getenv('RENDER') == 'true':
-    # No DATABASE_URL on Render: SQLite for build/serve until Postgres is linked.
+# Local development: MySQL (MYSQL_* in .env). Render: SQLite (no Postgres for now).
+if os.getenv('RENDER') == 'true':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
-            # Reduce "database is locked" with multiple gunicorn workers (use --workers 1 too).
             'OPTIONS': {'timeout': 20},
         }
     }
