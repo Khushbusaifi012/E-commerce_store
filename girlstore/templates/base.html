@@ -90,7 +90,7 @@
                 <div class="group relative ml-2">
                     <button type="button" class="flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/90 py-1 pl-1 pr-3 text-sm font-medium shadow-sm shadow-zinc-900/5 transition hover:border-zinc-300 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900/90 dark:hover:border-zinc-600" aria-expanded="false" aria-haspopup="true">
                         <img src="{% static 'images/profile.jpg' %}" alt="" class="size-8 rounded-full object-cover" width="32" height="32">
-                        <span class="max-w-[6rem] truncate text-zinc-700 dark:text-zinc-200">{% firstof user.get_full_name user.username %}</span>
+                        <span class="max-w-[6rem] truncate text-zinc-700 dark:text-zinc-200">{{ user.username }}</span>
                     </button>
                     <div class="invisible absolute right-0 top-full z-50 mt-1 w-48 origin-top-right scale-95 rounded-xl border border-zinc-100/90 bg-white/95 p-1 opacity-0 shadow-xl shadow-zinc-900/10 ring-1 ring-black/[0.04] backdrop-blur-md transition group-hover:visible group-hover:scale-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-900/95 dark:ring-black/40">
                         <form action="{% url 'logout' %}" method="post" class="p-1">
