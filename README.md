@@ -16,7 +16,7 @@ This is a full-stack E-commerce web application built with Django. The store is 
 | Category     | Technology         |
 |--------------|--------------------|
 | Backend      | Django (Python)    |
-| Database     | MYSQL             |
+| Database     | SQLite            |
 | Frontend     | HTML, CSS, Bootstrap |
 | Authentication | Django's built-in auth system |
 | Admin Panel  | Django Admin       |
@@ -31,7 +31,7 @@ This is a full-stack E-commerce web application built with Django. The store is 
 
 ├── media/ # Uploaded product images
 
-├── db.sqlite3 # Default database but I have used MYSQL
+├── .env         # DATABASE_URL, SECRET_KEY (not committed)
 
 ├── manage.py # Django management script
 
@@ -57,6 +57,8 @@ venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
+
+# Copy .env.example to .env and set SECRET_KEY (SQLite file is created on migrate).
 
 # 4. Run migrations
 python manage.py makemigrations
