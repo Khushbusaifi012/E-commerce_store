@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
+import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
@@ -89,26 +90,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'girlstore.wsgi.application'
 
 
-# Local development: MySQL (MYSQL_* in .env). Render: SQLite (no Postgres for now).
-if os.getenv('RENDER') == 'true':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-            'OPTIONS': {'timeout': 20},
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv('MYSQL_DATABASE', 'girlstore'),
-            'USER': os.getenv('MYSQL_USER', 'root'),
-            'HOST': os.getenv('MYSQL_HOST', 'localhost'),
-            'PORT': os.getenv('MYSQL_PORT', '3306'),
-            'PASSWORD': os.getenv('MYSQL_PASSWORD', ''),
-        }
-    }
+# PostgreSQL everywhere: set DATABASE_URL in .env locally; Render injects it from a Postgres add-on.
+_database_url = os.getenv('DATABASE_URL')
+if not _database_url:
+    raise ImproperlyConfigured(
+        'Set DATABASE_URL to a PostgreSQL URL, e.g. '
+        'postgres://USER:PASSWORD@localhost:5432/girlstore'
+    )
+DATABASES = {
+    'default': dj_database_url.config(
+        default=_database_url,
+        conn_max_age=600,
+        ssl_require=os.getenv('RENDER') == 'true',
+    ),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
