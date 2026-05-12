@@ -99,15 +99,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'girlstore.wsgi.application'
 
 
-# SQLite — local and Render (no Postgres driver; Render free tier friendly).
-# Note: on Render the DB file lives on ephemeral disk; data can reset on redeploy.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {'timeout': 20},
+# SQLite by default OR MySQL when .env has DB_NAME=girlstore (same DB as mysql CLI).
+_db_name = os.getenv('DB_NAME', '').strip()
+if _db_name:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': _db_name,
+            'USER': os.getenv('DB_USER', 'root'),
+            'PASSWORD': os.getenv('DB_PASSWORD') or os.getenv('MYSQL_PASSWORD', ''),
+            'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+            'PORT': os.getenv('DB_PORT', '3306'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+            'OPTIONS': {'timeout': 20},
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
