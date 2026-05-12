@@ -20,8 +20,6 @@ This is a full-stack E-commerce web application built with Django. The store is 
 | Authentication | Django's built-in auth system |
 | Admin Panel  | Django Admin       |
 
-**Database note:** Set `DB_NAME` (and MySQL credentials) in `.env` to use **MySQL** with **PyMySQL**. If `DB_NAME` is unset, Django uses **SQLite** (`db.sqlite3` next to `manage.py`).
-
 📁 Project Structure (inside `E-commerce_store/girlstore/`)
 
 ```
@@ -53,13 +51,10 @@ python -m venv venv
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# Copy .env.example to .env — set SECRET_KEY.
-# MySQL: set DB_NAME, DB_USER, DB_HOST, DB_PORT, and DB_PASSWORD or MYSQL_PASSWORD.
-# SQLite only: leave DB_NAME unset; migrate creates db.sqlite3.
-
 python manage.py migrate
 
 python manage.py createsuperuser
+
 python manage.py runserver
 ```
 
