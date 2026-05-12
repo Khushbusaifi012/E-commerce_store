@@ -8,73 +8,63 @@ This is a full-stack E-commerce web application built with Django. The store is 
 - 👤 User registration and login
 - 🧾 Order management
 - 🛠️ Admin panel for managing products and orders
-- 📦 Inventory management
-- 📋 Clean UI using Django templates and static files
+- 📋 Clean UI using Django templates, Tailwind (CDN), and static files
 
 🧑‍💻 Tech Stack :-
 
 | Category     | Technology         |
 |--------------|--------------------|
 | Backend      | Django (Python)    |
-| Database     | SQLite            |
-| Frontend     | HTML, CSS, Bootstrap |
+| Database     | MySQL **or** SQLite (see below) |
+| Frontend     | HTML, Tailwind CDN, Django templates |
 | Authentication | Django's built-in auth system |
 | Admin Panel  | Django Admin       |
 
-📁 Project Structure:- E-commerce_store/
+**Database note:** Set `DB_NAME` (and MySQL credentials) in `.env` to use **MySQL** with **PyMySQL**. If `DB_NAME` is unset, Django uses **SQLite** (`db.sqlite3` next to `manage.py`).
 
-├── shop/ # Main Django app (models, views, URLs)
+📁 Project Structure (inside `E-commerce_store/girlstore/`)
 
-├── static/ # Static files (CSS, JS, images)
-
-├── templates/ # HTML templates
-
-├── media/ # Uploaded product images
-
-├── .env         # DATABASE_URL, SECRET_KEY (not committed)
-
-├── manage.py # Django management script
-
-└── requirements.txt # Python dependencies (optional)
+```
+girlstore/
+├── manage.py
+├── requirements.txt
+├── .env.example          # copy to .env (not committed)
+├── shop/                 # Django app (models, views, URLs)
+├── girlstore/            # project settings (settings.py, urls.py)
+├── static/               # CSS, JS, images
+├── templates/            # HTML templates
+└── media/                # uploaded product images (local)
+```
 
 🔧 Installation
+
 Follow the steps below to run the project locally:
-# 1. Clone the repository
+
+```bash
+# 1. Clone the repository (use your fork URL if different)
 git clone https://github.com/your-username/E-commerce_store.git
+cd E-commerce_store/girlstore
 
-cd E-commerce_store
-
-cd girlstore
-
-# 2. Create a virtual environment
+# 2. Create & activate virtual environment (Windows vs macOS/Linux)
 python -m venv venv
-
-# On Macos:
-source venv/bin/activate 
-
-# On Windows:
-venv\Scripts\activate
+# macOS/Linux: source venv/bin/activate
+# Windows:       venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# Copy .env.example to .env and set SECRET_KEY (SQLite file is created on migrate).
-
-# 4. Run migrations
-python manage.py makemigrations
+# Copy .env.example to .env — set SECRET_KEY.
+# MySQL: set DB_NAME, DB_USER, DB_HOST, DB_PORT, and DB_PASSWORD or MYSQL_PASSWORD.
+# SQLite only: leave DB_NAME unset; migrate creates db.sqlite3.
 
 python manage.py migrate
 
-# 5. Create a superuser (for admin access)
 python manage.py createsuperuser
-
-# 6. Run the development server
 python manage.py runserver
+```
 
-Then open your browser and go to :
-👉 http://127.0.0.1:8000/
+Then open **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)** in your browser.
 
-🛡️ Admin Panel Access
-After running the server :
-http://127.0.0.1:8000/admin/,
-Login using the superuser credentials you created like Username and Password.
+🛡️ Admin panel
+
+Open [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) and sign in with the superuser you created.
